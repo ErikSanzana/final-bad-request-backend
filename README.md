@@ -39,4 +39,6 @@ Tansuani Gerardo {
 -se crea archivo server.js
 -se crean carpetas y archivos base
 NO OLVIDAR crear trigger en base de datos
+06/03/2024
+-SÓLO UNA PRUEBA PARA VER SI SUBEN MIS ARCHIVOS A GIT.
 }

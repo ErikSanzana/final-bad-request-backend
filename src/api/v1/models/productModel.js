@@ -7,6 +7,16 @@ const getProduct = async () => {
   return response.rows;
 };
 
+
+const createProduct = async ({ destino, presupuesto }) => {
+  const SQLquery = {
+    text: "INSERT INTO viajes (destino, presupuesto) VALUES ($1, $2) RETURNING *",
+    values: [destino, presupuesto],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
+
 const updateProduct = async (id, { presupuesto, destino }) => {
   const SQLquery = {
     text: "UPDATE viajes SET presupuesto = $1, destino = $2 WHERE id = $3 RETURNING *",
@@ -25,4 +35,4 @@ const destroyProduct = async (id) => {
   return response.rowCount;
 };
 
-export { getProduct, updateProduct, destroyProduct };
+export { getProduct, updateProduct, destroyProduct,createProduct };

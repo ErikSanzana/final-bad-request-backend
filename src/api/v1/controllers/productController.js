@@ -11,6 +11,19 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const createProducts = async (req, res) => {
+  try {
+    const { product } = req.body;
+    const newProduct = await createTravel(product);
+    res.status(201).json({ travel: newProduct });
+  } catch (error) {
+    const errorFound = findError(error.code);
+    return res
+      .status(errorFound[0].status)
+      .json({ error: errorFound[0].message });
+  }
+};
+
 const updateProducts = async (req, res) => {
   try {
     const { id } = req.params;
@@ -41,4 +54,4 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, updateProducts, deleteProduct };
+export { getAllProducts, updateProducts, deleteProduct,createProducts };

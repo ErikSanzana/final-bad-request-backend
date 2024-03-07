@@ -27,13 +27,8 @@ export default (app) => {
     swaggerUi.setup(specs, {
       explorer: true,
       customCssUrl:
-        "https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-material.css",
+        "https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-monokai.css",
     })
   );
 };
 
-// theme-flattop.css;
-// theme-monokai.css
-// theme-material.css
-// theme-muted.css
-// theme-outline.css

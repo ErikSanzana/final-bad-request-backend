@@ -19,7 +19,7 @@ app.use(logger());
 // app.use("/api/v1", loginRoutes);
 
 app.listen(PORT, () => {
-  console.log(` app listening at ⚡ http://localhost:${PORT}⚡`);
+  console.log(` app listening at ⚡http://localhost:${PORT}⚡`);
   // console.log(`Swagger docs available at http://localhost:${PORT}/api/v1/docs`);
 });
 

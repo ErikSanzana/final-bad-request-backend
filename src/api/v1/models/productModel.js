@@ -7,7 +7,14 @@ const getProduct = async () => {
   return response.rows;
 };
 
-
+const ProductsById = async (id) => {
+  const SQLquery = {
+    text: "SELECT * FROM viajes WHERE id = $1",
+    values: [id],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
 const createProduct = async ({ destino, presupuesto }) => {
   const SQLquery = {
     text: "INSERT INTO viajes (destino, presupuesto) VALUES ($1, $2) RETURNING *",
@@ -35,4 +42,4 @@ const destroyProduct = async (id) => {
   return response.rowCount;
 };
 
-export { getProduct, updateProduct, destroyProduct,createProduct };
+export { getProduct, updateProduct, destroyProduct,createProduct,ProductsById };

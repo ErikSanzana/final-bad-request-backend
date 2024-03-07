@@ -11,6 +11,16 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const getProductsById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const travel = await ProductsById(id);
+    res.status(200).json({ travel: travel });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
 const createProducts = async (req, res) => {
   try {
     const { product } = req.body;
@@ -54,4 +64,4 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, updateProducts, deleteProduct,createProducts };
+export { getAllProducts, updateProducts, deleteProduct,createProducts,getProductsById };

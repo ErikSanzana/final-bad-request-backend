@@ -5,9 +5,9 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Plan de viajes API",
+      title: "Jabones Vegan",
       version: "1.0.0",
-      description: "API para el manejo de viajes y usuarios",
+      description: "API para la venta de jabones",
     },
     servers: [
       {

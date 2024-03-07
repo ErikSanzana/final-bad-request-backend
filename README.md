@@ -40,6 +40,8 @@ Tansuani Gerardo {
 -se crean carpetas y archivos base
 NO OLVIDAR crear trigger en base de datos
 06/03/2024
--SÓLO UNA PRUEBA PARA VER SI SUBEN MIS ARCHIVOS A GIT.
+-En swagger.js se cambió nombre:
+        title: "Jabones Vegan",
+            version: "1.0.0",
+            description: "API para la venta de jabones"
 }
-jkljkn

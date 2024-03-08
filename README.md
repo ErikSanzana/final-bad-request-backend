@@ -19,23 +19,23 @@ Tansuani Gerardo {
 "jest"
 "supertest"
 -se especifica jest en el package.json
-"transform": {
-"^.+\\.js$": "babel-jest"
-},
-"collectCoverageFrom": [
-"/*.js"
-],
-"coveragePathIgnorePatterns": [
-"/node_modules/"
-],
-"coverageThreshold": {
-"global": {
-"statements": 100,
-"branches": 100,
-"functions": 100,
-"lines": 100
-}
-}
+    "transform": {
+    "^.+\\.js$": "babel-jest"
+    },
+    "collectCoverageFrom": [
+    "/*.js"
+    ],
+    "coveragePathIgnorePatterns": [
+    "/node_modules/"
+    ],
+    "coverageThreshold": {
+    "global": {
+    "statements": 100,
+    "branches": 100,
+    "functions": 100,
+    "lines": 100
+    }
+    }
 -se crea archivo server.js
 -se crean carpetas y archivos base
 NO OLVIDAR crear trigger en base de datos
@@ -44,4 +44,10 @@ NO OLVIDAR crear trigger en base de datos
         title: "Jabones Vegan",
             version: "1.0.0",
             description: "API para la venta de jabones"
+07/03/24
+-se cargó lo asociado a "user"
+-se cargan todas las dependencias
+-se realiza npm audit y se ejecuta npm audit fix para reparar vulnerabilidades
+-se realiza npm fund
+-queda el código con 0 vulneramilidades
 }

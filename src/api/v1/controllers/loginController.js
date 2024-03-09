@@ -24,7 +24,6 @@ const loginUser = async (req, res) => {
         .status(errorFound[0].status)
         .json({ error: errorFound[0].message });
       } else {
-        //VERIFICAR Q LOS DATOS Q ESTAMOS LLAMANDO SEAN LOS CORRECTOS
         const { email, nombre, apellido } = findUser;
         const token = jwt.sign({ email }, process.env.JWT_SECRET, {
           expiresIn: "1h",

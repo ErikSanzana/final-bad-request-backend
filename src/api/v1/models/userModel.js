@@ -4,8 +4,7 @@ import bcrypt from "bcryptjs";
 const createUser = async ({ nombre, apellido, email, password }) => {
   const hashedPassword = bcrypt.hashSync(password)
   const SQLquery = {
-    //REVISAR QUE EL QUERRY SEA EL ADECUADO
-    text: "INSERT INTO usuarios (nombre, apellido, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
+    text: "INSERT INTO user (name, last_name, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
     values: [nombre, apellido, email, hashedPassword],
   };
   const response = await pool.query(SQLquery);
@@ -15,8 +14,7 @@ const createUser = async ({ nombre, apellido, email, password }) => {
 
 const byEmail = async ({email}) => {
   const SQLquery = {
-    //REVISAR QUE EL QUERRY SEA EL ADECUADO
-    text: "SELECT * FROM usuarios WHERE email = $1",
+    text: "SELECT * FROM user WHERE email = $1",
     values: [email],
   };
   const response = await pool.query(SQLquery);

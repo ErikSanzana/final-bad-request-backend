@@ -1,6 +1,8 @@
 import pool from "../../../../config/db/conectionDb";
 import format from "pg-format";
 
+//ACTUALIZAR PARAMETROS SEGÚN TABLAS DE LA BASE DE DATOS
+
 const getProduct = async () => {
   const SQLquery = { text: "SELECT * FROM viajes" };
   const response = await pool.query(SQLquery);
@@ -42,4 +44,4 @@ const destroyProduct = async (id) => {
   return response.rowCount;
 };
 
-export { getProduct, updateProduct, destroyProduct,createProduct,ProductsById };
+export { getProduct, updateProduct, destroyProduct, createProduct, ProductsById };

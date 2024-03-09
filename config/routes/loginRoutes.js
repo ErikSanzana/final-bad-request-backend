@@ -35,35 +35,51 @@ const router = express.Router();
 
 /**
  * @swagger
- * /auth_user:
- *   post:
- *     summary: Autenticar un usuario
- *     tags: [Login]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               user:
- *                 $ref: '#/components/schemas/Login'
- *     responses:
- *       '200':
- *         description: Success
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 token:
- *                   type: string
- *                   description: The user's token
- *                   example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjI4NzU1MjIyfQ.2cQ8V2X4cXyK7KbXvZIc3q5jRrFq3Zb8w7q0wJxX1mM"
- *       '400':
- *         description: Bad Request
+ * /user/login:
+    post:
+      tags:
+        - user
+      summary: Logs user into the system
+      description: User and Admin login
+      operationId: loginUser
+      parameters:
+        - name: username
+          in: query
+          description: The user name for login
+          required: false
+          schema:
+            type: string
+        - name: password
+          in: query
+          description: The password for login in clear text
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          headers:
+            X-Rate-Limit:
+              description: calls per hour allowed by the user
+              schema:
+                type: integer
+                format: int32
+            X-Expires-After:
+              description: date in UTC when token expires
+              schema:
+                type: string
+                format: date-time
+          content:
+            application/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid username/password supplied
  */
 
-router.post("/auth_user", validparameters, loginUser);
+router.post("/user/login", validparameters, loginUser);
 
 export default router;

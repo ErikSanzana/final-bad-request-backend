@@ -15,7 +15,7 @@ const options = {
       },
     ],
   },
-  apis: ["config/routes/*.js"],
+  apis: ["config/routes/*.js"], //está llamando a todas las routes
 };
 
 const specs = swaggerJsdoc(options);

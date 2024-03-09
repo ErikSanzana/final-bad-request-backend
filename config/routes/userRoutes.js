@@ -4,6 +4,7 @@ import { validateParametersUser } from "../../middlewares/validateParamsUser.js"
 
 const router = express.Router();
 // REVISAR CON EL SWAGGER QUE NOSOTROS DEFINIMOS LO QUE VIENE A CONTINUACIÓN. ESTÁ ECHO, SOLO HAY QUE RESCATARLO
+// DE LA FILA 8 A LA 55 DEBE IR??
 
 /**
  * @swagger
@@ -55,31 +56,38 @@ const router = express.Router();
 
 /**
  * @swagger
- * /users:
- *   post:
- *     summary: Crear un nuevo usuario
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               user:
- *                 $ref: '#/components/schemas/Users'
- *     responses:
- *       '200':
- *         description: Success
- *         content:
- *           application/json:
- *             schema:
- *              type: object
- *              properties:
- *                user:
- *                  $ref: '#/components/schemas/Users'
- *       '400':
- *         description: Error al obtener los viajes
+ * /user:
+    post:
+      tags:
+        - user
+      summary: Register NEW user
+      description: This can only be done by the non-logged in user.
+      operationId: createUser
+      requestBody:
+        description: >-
+          Register a new user, as default, has the **Rol: _USER_** ;
+          Postal_codes only 1 needed 
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/user'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/user'
+      responses:
+        default:
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/user'
  */
 
 router.post("/users", validateParametersUser, createNewUser);

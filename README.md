@@ -51,3 +51,9 @@ NO OLVIDAR crear trigger en base de datos
 -se realiza npm fund
 -queda el código con 0 vulneramilidades
 }
+Tansuani{
+    -actualizar query según tablas en usermodel
+    -se corta el código de "user" del archivo openapi y se pega de fila 58 a 89 debajo de swagger en userRoutes
+    -se corta el código de "user/login" del archivo openapi y se pega de fila 38 a 80 debajo de swagger en loginRoutes
+    -comentario de lo que falta corregir en product
+}

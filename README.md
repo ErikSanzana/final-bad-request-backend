@@ -57,3 +57,10 @@ Tansuani{
     -se corta el código de "user/login" del archivo openapi y se pega de fila 38 a 80 debajo de swagger en loginRoutes
     -comentario de lo que falta corregir en product
 }
+gerardo
+{
+
+    -se crea productrouter con todas sus rutas
+    -se crea modelo y controller para agregar productos a la db
+
+}

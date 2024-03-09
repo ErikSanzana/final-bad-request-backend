@@ -1,5 +1,8 @@
-import 'dotenv/config'
+
 import pg from 'pg'
+import { config } from "dotenv";
+config();
+
 
 const pool = new pg.Pool({
   host: process.env.DB_HOST,
@@ -9,5 +12,5 @@ const pool = new pg.Pool({
   allowExitOnIdle: true
   // connectionString: process.env.DATABASE_URL,
  })
-
+console.log(pool)
  export default pool;

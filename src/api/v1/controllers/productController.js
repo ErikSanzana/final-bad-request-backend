@@ -1,6 +1,33 @@
+import {
+  createProduct,
+  getProduct,
+  ProductsById,
+  updateProduct,
+  destroyProduct,
+} from "../models/productModel.js";
+
+const createProducts = async (req, res) => {
+  try {
+    const { name, description, price, stock, product_image } = req.body;
+    const newProduct = await createProduct({
+      name,
+      description,
+      price,
+      stock,
+      product_image,
+    });
+    res.status(201).json({ product: newProduct });
+  } catch (error) {
+    const errorFound = findError(error.code);
+    return res
+      .status(errorFound[0].status)
+      .json({ error: errorFound[0].message });
+  }
+};
+
 const getAllProducts = async (req, res) => {
   try {
-    const products = await getAllProducts();
+    const products = await getProduct();
     res.status(200).json({ products: products });
   } catch (error) {
     console.log(error);
@@ -21,24 +48,11 @@ const getProductsById = async (req, res) => {
   }
 };
 
-const createProducts = async (req, res) => {
-  try {
-    const { product } = req.body;
-    const newProduct = await createTravel(product);
-    res.status(201).json({ travel: newProduct });
-  } catch (error) {
-    const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0].status)
-      .json({ error: errorFound[0].message });
-  }
-};
-
 const updateProducts = async (req, res) => {
   try {
     const { id } = req.params;
     const { products } = req.body;
-    const products_update = await updateProducts(id, products);
+    const products_update = await updateProduct(id, products);
     res.status(200).json({ products: products_update });
   } catch (error) {
     const errorFound = findError(error.code);
@@ -64,4 +78,10 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-export { getAllProducts, updateProducts, deleteProduct, createProducts, getProductsById };
+export {
+  getAllProducts,
+  updateProducts,
+  deleteProduct,
+  createProducts,
+  getProductsById,
+};

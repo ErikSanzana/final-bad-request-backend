@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { logger } from "logger-express";
+import productRoutes from "./config/routes/productRoutes.js";
 // import swagger from"./config/swagger/swagger.js";
 
 // import travelsRouter from "./config/routes/travelRoutes.js";
@@ -8,12 +9,13 @@ import { logger } from "logger-express";
 // import userRoutes from "./config/routes/userRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 // swagger(app)
 app.use(express.json());
-app.options('*', cors())
+app.options("*", cors());
 app.use(logger());
+app.use("/api/v1", productRoutes);
 // app.use("/api/v1", userRoutes);
 // app.use("/api/v1", travelsRouter);
 // app.use("/api/v1", loginRoutes);

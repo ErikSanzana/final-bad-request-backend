@@ -9,7 +9,7 @@ import productRoutes from "./config/routes/productRoutes.js";
 // import userRoutes from "./config/routes/userRoutes.js";
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||3000;
 
 // swagger(app)
 app.use(express.json());

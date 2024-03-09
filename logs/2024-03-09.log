@@ -1,0 +1,4 @@
+
+Started GET /products for :: ::ffff:127.0.0.1 at Sat Mar 09 2024 18:53:52 GMT-0300 (Chile Summer Time)
+  Parameters in body: {}
+Completed: 404 message:  Time response: 40 ms Request ID: [43e15f8a-3015-4642-8f98-a75342fc64bf]

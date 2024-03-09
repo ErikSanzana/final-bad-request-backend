@@ -2,3 +2,11 @@
 Started GET /products for :: ::ffff:127.0.0.1 at Sat Mar 09 2024 18:53:52 GMT-0300 (Chile Summer Time)
   Parameters in body: {}
 Completed: 404 message:  Time response: 40 ms Request ID: [43e15f8a-3015-4642-8f98-a75342fc64bf]
+
+Started GET /products for :: ::ffff:127.0.0.1 at Sat Mar 09 2024 19:09:53 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 404 message:  Time response: 6 ms Request ID: [407cc4a0-61c1-4f10-b50b-b1e2c7c852ac]
+
+Started GET /products for :: ::ffff:127.0.0.1 at Sat Mar 09 2024 19:15:04 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {}
+Completed: 404 message:  Time response: 7 ms Request ID: [bc9e0c37-5a7a-4c34-aca0-30a04c971bd4]

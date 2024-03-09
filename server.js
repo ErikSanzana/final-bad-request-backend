@@ -12,17 +12,26 @@ const app = express();
 const PORT = process.env.PORT||3000;
 
 // swagger(app)
-app.use(express.json());
 app.options("*", cors());
-app.use(logger());
+app.use(express.json());
+app.use(logger("dev"));
 app.use("/api/v1", productRoutes);
 // app.use("/api/v1", userRoutes);
 // app.use("/api/v1", travelsRouter);
 // app.use("/api/v1", loginRoutes);
 
-app.listen(PORT, () => {
-  console.log(` app listening at ⚡http://localhost:${PORT}⚡`);
-  // console.log(`Swagger docs available at http://localhost:${PORT}/api/v1/docs`);
+
+
+app.listen(PORT, (error) => {
+  if (error) {
+    console.log("CHECK THIS!!!: ", error);
+  
+  } else {
+    console.log(` app listening at ⚡http://localhost:${PORT}  ⚡`);
+    // console.log(`Swagger docs available at http://localhost:${PORT}/api/v1/docs`);
+  }
 });
+
+
 
 export default app;

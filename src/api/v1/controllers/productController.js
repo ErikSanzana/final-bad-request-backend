@@ -18,14 +18,16 @@ const createProducts = async (req, res) => {
     });
     res.status(201).json({ product: newProduct });
   } catch (error) {
-    const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0].status)
-      .json({ error: errorFound[0].message });
+    console.log(error)
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
   }
 };
 
-const getAllProducts = async (req, res) => {
+
+const getAllProducts = async (req, res, next) => {
   try {
     const products = await getProduct();
     res.status(200).json({ products: products });
@@ -35,6 +37,7 @@ const getAllProducts = async (req, res) => {
     return res
       .status(errorFound[0]?.status)
       .json({ error: errorFound[0]?.message });
+
   }
 };
 

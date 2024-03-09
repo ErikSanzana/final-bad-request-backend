@@ -17,6 +17,7 @@ const ProductsById = async (id) => {
   const response = await pool.query(SQLquery);
   return response.rows[0];
 };
+
 const createProduct = async (productData) => {
   try {
     const { name, description, price, stock, product_image } = productData;

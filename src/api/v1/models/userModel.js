@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 const createUser = async (email, password, rut, name, last_name, last_name_second, birth_date ) => {
   const hashedPassword = bcrypt.hashSync(password)
   const SQLquery = {
-    text: "INSERT INTO user (email, password, rut, name, last_name, last_name_second, birth_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;",
+    text: `INSERT INTO "user" (email, password, rut, name, last_name, last_name_second, birth_date) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`,
     values: [email, hashedPassword, rut, name, last_name, last_name_second, birth_date],
   };
 

@@ -1,5 +1,8 @@
 import express from "express";
-import { addFavorites, createNewUser } from "../../src/api/v1/controllers/usersController.js";
+import { addFavorites, 
+  createNewUser, 
+  likedFavorites, 
+  updateUser } from "../../src/api/v1/controllers/usersController.js";
 import { validateParametersUser } from "../../middlewares/validateParamsUser.js";
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 
@@ -100,9 +103,9 @@ router.post("/user", validateParametersUser, createNewUser);
 
 router.post("/user/favorites",addFavorites );
 
-router.get("/user/favorites/liked",);
+router.get("/user/favorites/liked", likedFavorites );
 
-router.put("user/:id",);
+router.put("user/:id", updateUser );
 
 // ADMN routes /admin/
 

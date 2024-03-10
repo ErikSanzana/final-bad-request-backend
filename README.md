@@ -76,3 +76,12 @@ NAcho {
         - agrege la ruta de favoritos pensando que era para products... perdon
 
 }
+
+Tansuani{
+    -se crea likedFavorites en userroutes
+    -se inscribe likedFavorites en usercontroler. PENDIENTE REVISAR CODIGO Y FUNCIONALIDAD
+    -se crea liked en usermodels
+    -se crea updateUser en userroutes
+    -se inscribe updateUser en usercontroler. PENDIENTE REVISAR CODIGO Y FUNCIONALIDAD
+    -se crea actualize en usermodels
+}

@@ -68,5 +68,22 @@ const createFavorites = async (client_rut, product_id) => {
   return response.rows;
 };
 
+const liked = async (client_id) => {
+  const SQLquery = {
+    text: "SELECT * FROM favorites WHERE client_id = $1",
+    values: [client_id],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows;
+};
 
-export { createUser, byEmail, createFavorites, };
+const actualize = async (client_id) => {
+  const SQLquery = {
+    //text: "SELECT * FROM favorites WHERE client_id = $1",
+    //values: [client_id],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows;
+};
+
+export { createUser, byEmail, createFavorites, liked, actualize };

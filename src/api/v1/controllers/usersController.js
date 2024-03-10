@@ -1,4 +1,4 @@
-import { createFavorites, createUser } from "../models/userModel.js";
+import { createFavorites, createUser, liked, actualize } from "../models/userModel.js";
 import { findError } from "../utils/utils.js";
 
 
@@ -48,6 +48,36 @@ const addFavorites = async (req, res) => {
   }
 };
 
+const likedFavorites = async (req, res) => {
+  try {
+    const { client_id } = req.body;
+    
+    const result = await liked(client_id);
 
+    res.status(201).json({ user: newUser });
+  } catch (error) {
+    console.log(error);
+    //const errorFound = findError(error.code);
+    //return res
+      //.status(errorFound[0].status)
+      //.json({ error: errorFound[0].message });
+  }
+};
 
-export { createNewUser, addFavorites,  };
+const updateUser = async (req, res) => {
+  try {
+    //const { client_id } = req.body;
+    
+    //const result = await actualize(client_id);
+
+    res.status(201).json({ user: newUser });
+  } catch (error) {
+    console.log(error);
+    //const errorFound = findError(error.code);
+    //return res
+      //.status(errorFound[0].status)
+      //.json({ error: errorFound[0].message });
+  }
+};
+
+export { createNewUser, addFavorites, likedFavorites, updateUser };

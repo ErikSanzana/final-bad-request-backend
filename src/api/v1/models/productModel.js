@@ -5,7 +5,6 @@ import pool from "../../../../config/db/conectionDb.js";
 // parametros desde la DB para productos  ( name, description, price, stock, product_image )
 
 
-
 const getProduct = async () => {
   const SQLquery = { text: "SELECT * FROM products" };
   const response = await pool.query(SQLquery);
@@ -18,9 +17,9 @@ const ProductsById = async (id) => {
     values: [id],
   };
   const response = await pool.query(SQLquery);
-  if (response.rowCount == 0) {
-    throw new Error("Not Found, check ID");
-  }
+  // if (response.rowCount == 0) {
+  //   throw new Error("Not Found, check ID");
+  // }
   return response.rows[0];
 };
 
@@ -38,19 +37,18 @@ const createProduct = async (productData) => {
   }
 };
 
-const updateProduct = async (productId, updatedProductData) => {
+const updateProduct = async (id, name, description, price, stock, product_image) => {
   try {
-    const { name, description, price, stock, product_image } =
-      updatedProductData;
+
     const SQLquery = {
       text: "UPDATE products SET name = $1, description = $2, price = $3, stock = $4, product_image = $5 WHERE id = $6 RETURNING *",
-      values: [name, description, price, stock, product_image, productId],
+      values: [name, description, price, stock, product_image, id],
     };
     const response = await pool.query(SQLquery);
     if (response.rowCount == 0) {
       throw new Error("Not Found, check ID");
     }
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("Error updating product: " + error.message);
   }
@@ -63,7 +61,7 @@ const destroyProduct = async (id) => {
   };
   const response = await pool.query(SQLquery);
   
-  return response.rowCount;
+  return response.rowCount[0];
 };
 
 // patch segun corresponda
@@ -71,18 +69,16 @@ const destroyProduct = async (id) => {
 const patchUpdateProduct = async (id, name, description, price, stock, product_image) => {
   try {
     const SQLquery = {
-      text: "UPDATE products SET name = COALESCE($2,name),  description = COALESCE($3, description), price = COALESCE($4, price), stock = COALESCE($5,stock), product_image= COALESCE($6, product_image) WHERE id=$1 RETURNING * ;",
+      text: "UPDATE products SET name = COALESCE($2,name),  description = COALESCE($3, description), price = COALESCE($4, price), stock = COALESCE($5,stock), product_image= COALESCE($6, product_image) WHERE id= $1  RETURNING * ;",
       values: [id, name, description, price, stock, product_image],
     };
     const response = await pool.query(SQLquery);
-    if (response.rowCount == 0) {
-      throw new Error("Not Found, check ID");
-    }
-    return response.rows;
+    // console.log(response.rows)
+    return response.rows[0];
   } catch (error) {
     console.log(error);
   };
-}
+};
 
 
 // para completar las tablas que tenemos
@@ -97,7 +93,7 @@ const createStoreCart = async (client_rut, product_id, product_price, product_am
     values: [client_rut, product_id, product_price, product_amount, total_price],
   };
   const response = await pool.query(SQLquery);
-  return response.rows;
+  return response.rows[0];
 
 };
 
@@ -109,7 +105,7 @@ const createBuyOrder = async (cart_id, client_rut, postal_code, product_code, pr
     values: [cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price],
   };
   const response = await pool.query(SQLquery);
-  return response.rows;
+  return response.rows[0];
 
 };
 
@@ -121,7 +117,7 @@ const createOrderHistory = async (client_rut, postal_code, product_code, product
     values: [client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at ],
   };
   const response = await pool.query(SQLquery);
-  return response.rows;
+  return response.rows[0];
 };
 
 

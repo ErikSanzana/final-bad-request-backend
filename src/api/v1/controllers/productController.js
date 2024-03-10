@@ -7,6 +7,7 @@ import {
   patchUpdateProduct,
   createStoreCart,
 } from "../models/productModel.js";
+import { findError } from "../utils/utils.js";
 
 const createProducts = async (req, res) => {
   try {
@@ -31,6 +32,7 @@ const createProducts = async (req, res) => {
 
 const getAllProducts = async (req, res) => {
   try {
+
     const products = await getProduct();
     res.status(200).json({ products: products });
   } catch (error) {
@@ -46,8 +48,8 @@ const getAllProducts = async (req, res) => {
 const getProductsById = async (req, res) => {
   try {
     const { id } = req.params;
-    const travel = await ProductsById(id);
-    res.status(200).json({ travel: travel });
+    const product = await ProductsById(id);
+    res.status(200).json({ product: product });
   } catch (error) {
     console.log("error", error);
   }
@@ -56,8 +58,8 @@ const getProductsById = async (req, res) => {
 const updateProducts = async (req, res) => {
   try {
     const { id } = req.params;
-    const { products } = req.body;
-    const products_update = await updateProduct(id, products);
+    const { name, description, price, stock, product_image } = req.body;
+    const products_update = await updateProduct(id, name, description, price, stock, product_image);
     res.status(200).json({ products: products_update });
   } catch (error) {
     const errorFound = findError(error.code);
@@ -68,19 +70,19 @@ const updateProducts = async (req, res) => {
 };
 
 const patchProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name, description, price, stock, product_image } = req.body;
   try {
-    const { id } = req.params;
-    const { products } = req.body;
-    const patchProduct = await patchUpdateProduct(id, products);
+    const patchProduct = await patchUpdateProduct(id, name, description, price, stock, product_image);
     res.status(200).json({ products: patchProduct });
   } catch (error) {
     console.log(error)
-    const errorFound = findError(error.code);
-    return res
-      .status(errorFound[0].status)
-      .json({ error: errorFound[0].message });
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
   }
-}
+};
 
 const deleteProduct = async (req, res) => {
   try {
@@ -91,14 +93,13 @@ const deleteProduct = async (req, res) => {
     }
     res.status(204).json({ message: "registro eliminado con exito" });
   } catch (error) {
+    console.log(error)
     const errorFound = findError(error.code);
     return res
       .status(errorFound[0].status)
       .json({ error: errorFound[0].message });
   }
 };
-
-
 
 
 //carro de compra 

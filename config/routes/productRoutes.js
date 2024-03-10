@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.get("/products", getAllProducts);
 
-router.get("/products/:id", getProductsById);
+router.get("/product/:id", getProductsById);
 
 // "/admin/products"
 
@@ -25,9 +25,11 @@ router.post("/admin/products", createProducts);
 
 // "/admin/products/:id"
 
-router.delete("/admin/products/:id", deleteProduct);
+router.get("/admin/product/:id", getProductsById);
 
-router.put("/admin/products/:id", updateProducts );
+router.delete("/admin/product/:id", deleteProduct);
+
+router.put("/admin/product/:id", updateProducts );
 
 router.patch("/admin/product/:id", patchProduct );
 

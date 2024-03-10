@@ -74,3 +74,123 @@ Completed: 400 message:  Time response: 41 ms Request ID: [820b9359-1b37-4868-9f
 Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 14:04:14 GMT-0300 (hora de verano de Chile)
   Parameters in body: {"rut":126666789,"name":"John","last_name":"Doe","postal_code":123245,"email":"john@example.com","password":"secretword","birth_date":"02/03/2024","rol":"user"}
 Completed: 201 message:  Time response: 45 ms Request ID: [dd5355b8-4b89-4b94-8310-20d3ceb28477]
+
+Started POST /api/v1/admin/products for :: ::1 at Sun Mar 10 2024 14:11:19 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"joyas","description":"joyas de jabon","price":55555,"stock":5,"product_image":"www.google.cl"}
+Completed: 201 message:  Time response: 40 ms Request ID: [7a5e3593-26f1-490c-b4c7-9b5e32ab07c6]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:48:17 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacristam"}
+Completed: 404 message:  Time response: 7 ms Request ID: [67af6d5d-c0d5-4c60-8c98-f3979d2f36c6]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:48:27 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 5 ms Request ID: [58771b25-aa17-4e30-9a43-45d640d04319]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:52:34 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 5 ms Request ID: [36b2a337-3ed3-4568-a3cd-87f7453c59a7]
+
+Started PUT /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:52:42 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 2 ms Request ID: [5c382b63-8d60-49c7-be5e-164d67a9d778]
+
+Started PUT /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:53:10 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 5 ms Request ID: [75dce810-f06a-4ca5-b122-6a15cff477ba]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:53:15 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 1 ms Request ID: [d8725e15-cd5e-4add-ae5d-6f6d67ba5a49]
+
+Started PUT /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:53:19 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 1 ms Request ID: [3826e55f-7c3f-4479-becb-5f52847f52db]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:53:23 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sac"}
+Completed: 404 message:  Time response: 2 ms Request ID: [9e2a1f58-949c-43d4-bc38-f2d691aa6337]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 16:54:07 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"id":"4615ca01-6416-4c26-a9bb-d8da68814d2c","name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [9cef26d8-86d7-4809-9f7f-439e118a7b58]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:57:46 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 5 ms Request ID: [05acca45-46f6-46a0-9b30-f08a53348e45]
+
+Started PATCH /api/v1/admin/products/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:57:54 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 1 ms Request ID: [f13829b0-0e7f-4e2c-b034-d319131c147f]
+
+Started PUT /api/v1/admin/products/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:57:58 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [90c208dc-f780-4e58-ac1a-83d48feab257]
+
+Started PUT /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:58:04 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [8bf2f7a1-621c-4de6-835e-73ff68ed6d8d]
+
+Started PUT /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 16:59:58 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 5 ms Request ID: [be458a1b-eb0e-4b72-af94-0020756934cb]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:00:02 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [8e8180f8-7ac5-4a9f-9684-704a7eed7edb]
+
+Started PATCH /api/v1/admin/products/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:00:13 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 1 ms Request ID: [22a2d38e-bb71-4459-872f-41cac89fa64f]
+
+Started PUT /api/v1/admin/products/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:00:16 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [41f01b27-ed11-4043-958a-fd51a9896e62]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:02:26 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [1cad8dd4-6549-4537-bcb6-4e74592a99e3]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:04:49 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 5 ms Request ID: [85530355-766a-4b44-aa53-3b43485430f1]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 17:04:54 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 1 ms Request ID: [fc46b112-797f-45c6-bf95-7b4ee80687d8]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:05:00 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [36f9ffb2-14a5-4827-9cbd-dfbeb57fe558]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:10:19 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 6 ms Request ID: [dcf5573e-e007-4590-a3ad-099b21d2e076]
+
+Started PATCH /api/v1/admin/products/ for :: ::1 at Sun Mar 10 2024 17:10:24 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [32caff03-fc61-464c-bdaa-e3f5337ec5df]
+
+Started PATCH /api/v1/admin/products/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:10:28 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [844e313e-f496-472c-9408-d5abc7e26737]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:12:05 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 6 ms Request ID: [3b319dbb-3096-4a37-a094-a0ad2d98bfb4]
+
+Started PATCH /api/v1/admin/products/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:14:32 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 5 ms Request ID: [97ebd31b-c67a-4f5c-8f2c-ecaa31f05dde]
+
+Started PATCH /api/v1/admin/product/?id=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:14:59 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [556dfab7-e0e0-4c8f-9190-19c5745bd6ee]
+
+Started PATCH /api/v1/admin/product/?=4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:15:11 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 404 message:  Time response: 2 ms Request ID: [2f944a26-4865-404c-8de2-52cd7f85f2cd]
+
+Started PATCH /api/v1/admin/product/4615ca01-6416-4c26-a9bb-d8da68814d2c for :: ::1 at Sun Mar 10 2024 17:15:59 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"name":"sacsdfasdgfasdgasgsdfgre"}
+Completed: 200 message:  Time response: 82 ms Request ID: [a65233da-d4a9-4241-bd6a-c9a99dfc9a08]

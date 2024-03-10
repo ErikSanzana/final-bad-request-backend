@@ -17,4 +17,4 @@ const validateParametersUser = (req, res, next) => {
   next();
 };
 
-export { validateParametersUser };
+export default { validateParametersUser };

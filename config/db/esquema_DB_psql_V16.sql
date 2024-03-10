@@ -116,3 +116,4 @@ CREATE TRIGGER user_updated_at_trigger
 BEFORE UPDATE ON "favorites"
 FOR EACH ROW
 EXECUTE PROCEDURE update_updated_at();
+

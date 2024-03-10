@@ -1,0 +1,60 @@
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:26:31 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 404 message:  Time response: 6 ms Request ID: [0c89540a-bb99-4c87-80cd-1119e1878468]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:27:19 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 7 ms Request ID: [1ca5552c-3f39-48c7-af4d-95d217d0780b]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:28:29 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 8 ms Request ID: [9ff4ab13-4b12-4442-aa42-65b55d382fac]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:28:57 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 8 ms Request ID: [1cb4e8ec-fd3a-4ce3-bdda-2e20d3201c88]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:29:16 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 10 ms Request ID: [c5b4dc55-45c2-4340-9ec5-77bfa02b7239]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:32:10 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 8 ms Request ID: [8cf0e134-a1a6-49ec-87db-54d1ae28bb24]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:33:02 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 66 ms Request ID: [e874eef2-2b0e-4878-ba7a-cab62501c06c]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:33:21 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 54 ms Request ID: [56d59341-f749-4573-abfe-25f6faa3c795]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:33:40 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 63 ms Request ID: [d5586919-9b03-466e-96bd-d886a4d444d2]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:35:47 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 54 ms Request ID: [84edf3f2-6a91-424b-a1dc-3fe9a7bbc0c8]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:36:06 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","birth_date":"02/03/2024","password":"secretpassword"}
+Completed: 400 message:  Time response: 170 ms Request ID: [10b3ba56-40a8-498b-ad6e-abbe84820962]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:37:01 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 37 ms Request ID: [5e76bc3e-fb28-41d9-9073-79ce2ad33f0c]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:38:36 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 57 ms Request ID: [57d04d7d-3c1e-4bde-afeb-22b4504160ca]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:39:48 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 38 ms Request ID: [3e78f1c1-4513-4ce3-8c77-1913720f97be]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:42:09 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 201 message:  Time response: 226 ms Request ID: [456ecfbb-4369-44af-8514-16b5c673de5d]

@@ -10,7 +10,7 @@ import {
   addCart,
   salesHistory
 } from "../../src/api/v1/controllers/productController.js";
-import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
+// import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
 // "/products" "/products/:id" 
@@ -45,7 +45,7 @@ router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/history", salesHist
 
 
 
-router.all("*", notFound); // para rutas inexistentes
+// router.all("*", notFound); // para rutas inexistentes
 
 
 

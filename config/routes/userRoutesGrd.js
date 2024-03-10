@@ -6,7 +6,7 @@ import {
 
 } from "../../src/api/v1/controllers/usercontrollerGrd.js";
 //import { validateParametersUserGrd } from "../../middlewares/validateParamsUserGrd.js";
-import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
+// import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 
 const router = express.Router();
 

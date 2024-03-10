@@ -12,7 +12,7 @@ CREATE TABLE "user" (
   "name" VARCHAR NOT NULL,
   "last_name" VARCHAR NOT NULL,
   "last_name_second" VARCHAR NOT NULL,
-  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date > created_at ), 
+  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ), 
   "is_banned" BOOLEAN NOT NULL DEFAULT false,
 
 CONSTRAINT check_rut_format CHECK (

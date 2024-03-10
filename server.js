@@ -5,7 +5,8 @@ import productRoutes from "./config/routes/productRoutes.js";
 // import swagger from"./config/swagger/swagger.js";
 
 // import travelsRouter from "./config/routes/travelRoutes.js";
-// import loginRoutes from "./config/routes/loginRoutes.js";
+import loginRoutes from "./config/routes/loginRoutes.js";
+import { createNewUser } from "./src/api/v1/controllers/usersController.js";
 // import userRoutes from "./config/routes/userRoutes.js";
 
 const app = express();
@@ -18,7 +19,9 @@ app.use(logger("dev"));
 app.use("/api/v1", productRoutes);
 // app.use("/api/v1", userRoutes);
 // app.use("/api/v1", travelsRouter);
-// app.use("/api/v1", loginRoutes);
+app.use("/api/v1", loginRoutes);
+app.use("/api/v1", createNewUser);
+
 
 
 

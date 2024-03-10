@@ -7,6 +7,8 @@ import {
   getProductsById,
   patchProduct,
   buyOrder,
+  addCart,
+  salesHistory
 } from "../../src/api/v1/controllers/productController.js";
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
@@ -31,9 +33,10 @@ router.patch("/admin/product/:id", patchProduct );
 
 // rutas para proceso de compra
 
-
-router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/shopppingCart", addCart); // el carro es diferente a favoritos.... pero usan los mismos datos... 
+router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/shopppingCart", addCart); 
+// el carro es diferente a favoritos.... pero usan los mismos datos... 
 router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/order", buyOrder);
+
 router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/history", salesHistory);
 
 

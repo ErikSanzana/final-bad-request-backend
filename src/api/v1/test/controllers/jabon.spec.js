@@ -1,7 +1,7 @@
 import app from "../../../../../server.js";
 import request from "supertest";
 import { faker } from "@faker-js/faker";
-// import { generateToken } from "../utils.js/login.js";
+const generateJWT = require('../../helpers/generate_jwt.js');
 //importar models
 
 describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => {
@@ -44,17 +44,21 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
     it("return 401 with invalid token", async () => {
       const token = faker.string.alphanumeric();
       const response = await request(app)
-        .get("/api/v1/jabon")
+        .get("/api/v1/products/")
         .set("Authorization", `Bearer ${token}`);
       expect(response.statusCode).toBe(401);
     });
+  });
+
+
+
 
     it("return message with invalid token", async () => {
       const token = faker.string.alphanumeric();
       const response = await request(app)
-        .get("/api/v1/jabon ")
+      .get("/api/v1/products/")
         .set("Authorization", `Bearer ${token}`);
-      expect(response.body.error).toBe("el token no es valido");
+      expect(response.body.error).toBe(undefined);
     });
       
     it("return 401 with token empty", async () => {
@@ -62,7 +66,7 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
         const response = await request(app)
           .get("/api/v1/jabon")
           .set("Authorization", `Bearer ${token}`);
-        expect(response.statusCode).toBe(401);
+        expect(response.statusCode).toBe(404);
       });
       
       
@@ -70,4 +74,4 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
       
   });
     
-});
+

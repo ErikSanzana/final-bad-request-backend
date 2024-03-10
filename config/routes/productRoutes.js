@@ -18,6 +18,5 @@ router.post("/admin/products", createProducts);
 router.post("/admin/products/:id", updateProducts);
 
 router.delete("/admin/products/:id", deleteProduct);
-//
 
 export default router;

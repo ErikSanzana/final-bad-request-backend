@@ -4,6 +4,7 @@ import {
   getUser,
   getFavoritesByUsers,
   addToFavorites,
+  deleteUserByIds
 } from "../models/useModelGrd.js";
 
 const createNewUser = async (req, res) => {
@@ -110,9 +111,27 @@ const addToFavorite = async (req, res) => {
   try {
     const { userId, productId } = req.body;
 
-    const favorite = await Favorite.addToFavorites(userId, productId);
+    const favorite = await addToFavorites(userId, productId);
 
     res.status(201).json({ favorite });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+const deleteUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedUser = await User.deleteUserByIds(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'Usuario no encontrado' });
+    }
+
+    res.status(200).json({ message: 'Usuario eliminado correctamente', user: deletedUser });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -124,4 +143,5 @@ export {
   getUserId,
   getFavoritesByUser,
   addToFavorite,
+  deleteUserById
 };

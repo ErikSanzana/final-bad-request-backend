@@ -91,3 +91,13 @@ export const addToFavorites = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteUserByIds = async (userId) => {
+  const query = {
+    text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
+    values: [userId],
+  };
+
+  const { rows } = await pool.query(query);
+  return rows[0];
+};

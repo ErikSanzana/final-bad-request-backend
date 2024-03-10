@@ -64,3 +64,15 @@ gerardo
     -se crea modelo y controller para agregar productos a la db
 
 }
+
+
+NAcho {
+    - despues de un rico incendio a 2 cuadras de la casa:
+        - las sirenas de bomberos suenan fuerte y no dejan dormir
+        - agregue la ruta patch a product (solo put esta en swager, pero la otra puede ser necesaria a nivel de admin de DB, no se unsa directamente pero esta en caso de emergencia :v )
+        - Agregue un not found a products y user, es para que avise que el cliente (thunder y/o postman o el que sea, que estamos donde no corresponde) y tener mas "profesionalismo en la wa de DB"
+        -validadores de respuesta a algunos models (aviso que viene algo vacio, y no que muestre el array vacio...es solo para el Style)
+        - añadida algunas rutas de products para  rellenar las tablas de la DB... que olvidamos que existian en el proceso de swagger (y con los arreglos, modificaciones que se han hecho)
+        - agrege la ruta de favoritos pensando que era para products... perdon
+
+}

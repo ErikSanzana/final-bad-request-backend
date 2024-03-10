@@ -4,6 +4,8 @@ import {
   ProductsById,
   updateProduct,
   destroyProduct,
+  patchUpdateProduct,
+  createStoreCart,
 } from "../models/productModel.js";
 
 const createProducts = async (req, res) => {
@@ -27,7 +29,7 @@ const createProducts = async (req, res) => {
 };
 
 
-const getAllProducts = async (req, res, next) => {
+const getAllProducts = async (req, res) => {
   try {
     const products = await getProduct();
     res.status(200).json({ products: products });
@@ -65,6 +67,21 @@ const updateProducts = async (req, res) => {
   }
 };
 
+const patchProduct = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { products } = req.body;
+    const patchProduct = await patchUpdateProduct(id, products);
+    res.status(200).json({ products: patchProduct });
+  } catch (error) {
+    console.log(error)
+    const errorFound = findError(error.code);
+    return res
+      .status(errorFound[0].status)
+      .json({ error: errorFound[0].message });
+  }
+}
+
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -81,10 +98,77 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+
+
+
+//carro de compra 
+
+const addCart = async (req, res) => {
+  try {
+// esto puede venir directo del front.. si se guardan los datos en un useState
+    const { client_rut, product_id, product_price, product_amount, total_price } = req.body;
+
+    const result = await createStoreCart(client_rut, product_id, product_price, product_amount, total_price);
+
+    res.status(201).json({ cart : result });
+
+  } catch (error) {
+    console.log(error)
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
+  }
+};
+
+
+// crear la orden de compra
+
+const buyOrder = async (req, res) => {
+  try {
+    const { cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price } = req.body;
+
+    const result = await createStoreCart(cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price);
+
+    res.status(201).json({ Buy_Order : result });
+
+  } catch (error) {
+    console.log(error)
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
+  }
+};
+
+//historial de ventas 
+const salesHistory = async (req, res) => {
+  try {
+    const { client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at } = req.body;
+
+    const result = await createStoreCart(client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at);
+
+    res.status(201).json({ added_to_history : result });
+
+  } catch (error) {
+    console.log(error)
+    // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
+  }
+};
+
+
 export {
   getAllProducts,
   updateProducts,
   deleteProduct,
   createProducts,
   getProductsById,
+  patchProduct,
+  addCart,
+  buyOrder,
+  salesHistory,
+
 };

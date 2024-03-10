@@ -1,10 +1,14 @@
 import express from "express";
-import { createNewUser } from "../../src/api/v1/controllers/usersController.js";
+import { addFavorites, createNewUser } from "../../src/api/v1/controllers/usersController.js";
 import { validateParametersUser } from "../../middlewares/validateParamsUser.js";
+import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 
 const router = express.Router();
+
+// datos usuarios    ( id, rut, name, last_name, postal_code, email, password, birth_date, rol, )
+
 // REVISAR CON EL SWAGGER QUE NOSOTROS DEFINIMOS LO QUE VIENE A CONTINUACIÓN. ESTÁ ECHO, SOLO HAY QUE RESCATARLO
-// DE LA FILA 8 A LA 55 DEBE IR??
+// DE LA FILA 8 A LA 55 DEBE IR?? // para swagger
 
 /**
  * @swagger
@@ -90,6 +94,24 @@ const router = express.Router();
                 $ref: '#/components/schemas/user'
  */
 
-router.post("/users", validateParametersUser, createNewUser);
+
+//user rountes /user
+router.post("/user", validateParametersUser, createNewUser);
+
+router.post("/user/favorites",addFavorites );
+
+router.get("/user/favorites/liked",);
+
+router.put("user/:id",);
+
+// ADMN routes /admin/
+
+router.get("/admin/users/:id",); 
+
+router.delete("/admin/user/:id",);
+
+
+
+router.all("*", notFound); // para rutas inexistentes
 
 export default router;

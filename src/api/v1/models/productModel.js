@@ -2,6 +2,9 @@ import pool from "../../../../config/db/conectionDb.js";
 
 
 //ACTUALIZAR PARAMETROS SEGÚN TABLAS DE LA BASE DE DATOS
+// parametros desde la DB para productos  ( name, description, price, stock, product_image )
+
+
 
 const getProduct = async () => {
   const SQLquery = { text: "SELECT * FROM products" };
@@ -15,6 +18,9 @@ const ProductsById = async (id) => {
     values: [id],
   };
   const response = await pool.query(SQLquery);
+  if (response.rowCount == 0) {
+    throw new Error("Not Found, check ID");
+  }
   return response.rows[0];
 };
 
@@ -41,7 +47,10 @@ const updateProduct = async (productId, updatedProductData) => {
       values: [name, description, price, stock, product_image, productId],
     };
     const response = await pool.query(SQLquery);
-    return response.rows[0];
+    if (response.rowCount == 0) {
+      throw new Error("Not Found, check ID");
+    }
+    return response.rows;
   } catch (error) {
     throw new Error("Error updating product: " + error.message);
   }
@@ -53,8 +62,71 @@ const destroyProduct = async (id) => {
     values: [id],
   };
   const response = await pool.query(SQLquery);
+  
   return response.rowCount;
 };
+
+// patch segun corresponda
+
+const patchUpdateProduct = async (id, name, description, price, stock, product_image) => {
+  try {
+    const SQLquery = {
+      text: "UPDATE products SET name = COALESCE($2,name),  description = COALESCE($3, description), price = COALESCE($4, price), stock = COALESCE($5,stock), product_image= COALESCE($6, product_image) WHERE id=$1 RETURNING * ;",
+      values: [id, name, description, price, stock, product_image],
+    };
+    const response = await pool.query(SQLquery);
+    if (response.rowCount == 0) {
+      throw new Error("Not Found, check ID");
+    }
+    return response.rows;
+  } catch (error) {
+    console.log(error);
+  };
+}
+
+
+// para completar las tablas que tenemos
+
+
+
+// pal carro 
+
+const createStoreCart = async (client_rut, product_id, product_price, product_amount, total_price) => {
+  const SQLquery = {
+    text: "INSERT INTO store_cart (client_rut, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5) RETURNING *; ",
+    values: [client_rut, product_id, product_price, product_amount, total_price],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows;
+
+};
+
+//para buy order 66
+
+const createBuyOrder = async (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) => {
+  const SQLquery = {
+    text: "INSERT INTO store_cart (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
+    values: [cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows;
+
+};
+
+// historial, para el usuario o para el admin 
+
+const createOrderHistory = async (client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at) => {
+  const SQLquery = {
+    text: "INSERT INTO store_cart (client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
+    values: [client_rut, postal_code, product_code, product_price, product_amount, total_price, send_at ],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows;
+};
+
+
+
+
 
 export {
   getProduct,
@@ -62,4 +134,9 @@ export {
   destroyProduct,
   createProduct,
   ProductsById,
+  patchUpdateProduct,
+  createStoreCart,
+  createBuyOrder,
+  createOrderHistory
+
 };

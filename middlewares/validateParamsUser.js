@@ -7,3 +7,4 @@ const validateParametersUser = (req, res, next) => {
 }
 
 export { validateParametersUser };
+

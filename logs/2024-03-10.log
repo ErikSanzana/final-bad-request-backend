@@ -58,3 +58,19 @@ Completed: 400 message:  Time response: 38 ms Request ID: [3e78f1c1-4513-4ce3-8c
 Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 13:42:09 GMT-0300 (hora de verano de Chile)
   Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
 Completed: 201 message:  Time response: 226 ms Request ID: [456ecfbb-4369-44af-8514-16b5c673de5d]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 14:03:42 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":123456789,"name":"John","last_name":"Doe","postal_code":12345,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 63 ms Request ID: [06152b8c-8f39-4e2a-b579-43b9122748a4]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 14:04:02 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":126666789,"name":"John","last_name":"Doe","postal_code":123245,"email":"john.doe@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 37 ms Request ID: [8714c565-0b33-4b9b-8d33-91cef3516538]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 14:04:09 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":126666789,"name":"John","last_name":"Doe","postal_code":123245,"email":"john@example.com","password":"secretpassword","birth_date":"02/03/2024","rol":"user"}
+Completed: 400 message:  Time response: 41 ms Request ID: [820b9359-1b37-4868-9fbb-a2e1aa5f5af5]
+
+Started POST /api/v1/user for :: ::1 at Sun Mar 10 2024 14:04:14 GMT-0300 (hora de verano de Chile)
+  Parameters in body: {"rut":126666789,"name":"John","last_name":"Doe","postal_code":123245,"email":"john@example.com","password":"secretword","birth_date":"02/03/2024","rol":"user"}
+Completed: 201 message:  Time response: 45 ms Request ID: [dd5355b8-4b89-4b94-8310-20d3ceb28477]

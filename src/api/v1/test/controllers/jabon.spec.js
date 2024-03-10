@@ -28,12 +28,8 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
   //   product_image: faker.image.urlLoremFlickr({ category: 'kitten' }),
   // };
 
-  
 
-
-
-
-  describe("users test,   ", () => {
+  describe("products test,   ", () => {
     const token = generateToken();
     it("Should DO SOMETHING WITH DA GET", async () => {
       const response = await request(app)

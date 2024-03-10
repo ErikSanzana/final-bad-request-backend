@@ -13,7 +13,7 @@ CREATE TABLE "user" (
   "last_name" VARCHAR NOT NULL ,
   "postal_code" INT UNIQUE NOT NULL,
   "email" VARCHAR UNIQUE NOT NULL,
-  "password" VARCHAR UNIQUE NOT NULL CHECK (length(password) >= 6),
+  "password" VARCHAR NOT NULL CHECK (length(password) >= 6),
   "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ),
   "rol" VARCHAR NOT NULL,
   "is_banned" BOOLEAN NOT NULL DEFAULT (false),

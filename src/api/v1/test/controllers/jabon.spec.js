@@ -1,23 +1,10 @@
 import app from "../../../../../server.js";
-import jwt from "jsonwebtoken";
 import request from "supertest";
 import { faker } from "@faker-js/faker";
 // import { generateToken } from "../utils.js/login.js";
 //importar models
 
 describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => {
-
-  // si practico chistes fomes aca....
-    // escribir lo relacionado con cada ruta, get obtiene algo, que hace y que se espera
-    
-// Login
-
-    describe("USER login", () => {
-        const tolkien = generateToken();
-        it("login a user account", async () => {
-            const {params}
-        })
-    });
 
 
   describe("login thru GET  {/ RUTA PARA GET ACA (como ejemplo) esperar a que esten listas y copiar pegar :D} ", () => {
@@ -83,6 +70,4 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
       
   });
     
-    
-    //final funcion describe CRUD ( linea inicio 8 )
 });

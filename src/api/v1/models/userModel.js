@@ -51,12 +51,6 @@ const getByRut = async ({ rut }) => {
 
 
 
-
-
-
-
-
-
 // add to  on favorites
 
 const createFavorites = async (client_rut, product_id) => {

@@ -1,4 +1,10 @@
-import { createUser } from "../models/useModelGrd.js";
+import {
+  createUser,
+  updateUsers,
+  getUser,
+  getFavoritesByUsers,
+  addToFavorites,
+} from "../models/useModelGrd.js";
 
 const createNewUser = async (req, res) => {
   try {
@@ -48,7 +54,7 @@ const updateUser = async (req, res) => {
       rol,
     } = req.body;
 
-    const result = await updateUser(
+    const result = await updateUsers(
       id,
       rut,
       name,
@@ -65,4 +71,57 @@ const updateUser = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
-export { createNewUser,updateUser};
+
+const getUserId = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await getUser(id);
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const getFavoritesByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+
+    const favorites = await getFavoritesByUsers(userId);
+
+    if (!favorites) {
+      return res
+        .status(404)
+        .json({ message: "No se encontraron favoritos para este usuario" });
+    }
+
+    res.status(200).json({ favorites });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+const addToFavorite = async (req, res) => {
+  try {
+    const { userId, productId } = req.body;
+
+    const favorite = await Favorite.addToFavorites(userId, productId);
+
+    res.status(201).json({ favorite });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export {
+  createNewUser,
+  updateUser,
+  getUserId,
+  getFavoritesByUser,
+  addToFavorite,
+};

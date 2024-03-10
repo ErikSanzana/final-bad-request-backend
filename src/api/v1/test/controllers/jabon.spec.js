@@ -101,3 +101,15 @@ describe("Crud JAbon JAbonero Jabonado de Jamon A.k.a. CRUD JA JA JA JA", () => 
   });
     
 
+
+/* para abajo funciona */
+  describe("Delete operations for /products", () => {
+
+    let nonExistingId = faker.number.int({ min: 5, max: 100 })
+    const token = generateJWT();
+    
+    it("DELETE /products/:id should return status code 404 when trying to delete a products with an id that does not exist", async () => {
+        const response = await request(app).delete(`/products/${nonExistingId}`).set("Authorization", `Bearer ${token}`).send();
+        expect(response.status).toBe(404);
+    });
+});

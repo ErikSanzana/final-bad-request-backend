@@ -7,5 +7,5 @@ const generateToken = () => {
     expiresIn: "1h",
   });
 };
-
+console.log("funcionando token", generateToken)
 export { generateToken };

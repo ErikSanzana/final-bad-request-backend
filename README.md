@@ -85,3 +85,7 @@ Tansuani{
     -se inscribe updateUser en usercontroler. PENDIENTE REVISAR CODIGO Y FUNCIONALIDAD
     -se crea actualize en usermodels
 }
+Ximena{
+    se instala swagger
+    se generan las funciones para la documentacion.
+}

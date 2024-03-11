@@ -11,7 +11,7 @@ const validateParametersUser = (req, res, next) => {
   ) {
     return res.status(400).json({
       error:
-        "El email, contraseña, rut, nombre, apellido, segundo apellido y fecha de nacimiento deben estar presentes",
+        "El email, contraseña, rut, nombre, apellido, segundo apellido y fecha de nacimiento deben estar presentes"
     });
   }
   next();

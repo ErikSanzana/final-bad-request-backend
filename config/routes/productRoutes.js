@@ -10,45 +10,24 @@ import {
   addCart,
   salesHistory
 } from "../../src/api/v1/controllers/productController.js";
-// import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
+import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
-// "/products" "/products/:id" 
-
 router.get("/products", getAllProducts);
-
 router.get("/product/:id", getProductsById);
-
-// "/admin/products"
-
 router.post("/admin/products", createProducts);
-
-// "/admin/products/:id"
-
 router.get("/admin/product/:id", getProductsById);
-
 router.delete("/admin/product/:id", deleteProduct);
-
-router.put("/admin/product/:id", updateProducts );
-
-router.patch("/admin/product/:id", patchProduct );
-
+router.put("/admin/product/:id", updateProducts);
+router.patch("/admin/product/:id", patchProduct);
 // rutas para proceso de compra
 
-router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/shopppingCart", addCart); 
-// el carro es diferente a favoritos.... pero usan los mismos datos... 
-router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/order", buyOrder);
+router.post("/user/shopppingCart", addCart);
 
-router.post("/algunNombreDeRutaBackEndParaSoloRellenarTablas/history", salesHistory);
+router.post("/user/order", buyOrder);
 
+router.post("/users/history", salesHistory);
 
-
-
-
-
-
-// router.all("*", notFound); // para rutas inexistentes
-
-
+router.all("*", notFound);
 
 export default router;

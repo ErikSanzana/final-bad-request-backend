@@ -1,7 +1,5 @@
 import pool from "../../../../config/db/conectionDb.js";
 
-// USER es palabra reservada en postgresql, al llamar usar "user"
-
 export const createUser = async (
   rut,
   name,
@@ -53,7 +51,7 @@ export const updateUsers = async (
       password,
       birth_date,
       rol,
-      id,
+      id
     ]
   };
   const response = await pool.query(SQLquery);

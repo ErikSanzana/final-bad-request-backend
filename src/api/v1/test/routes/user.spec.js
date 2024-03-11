@@ -2,9 +2,6 @@ import app from "../../../../../server.js";
 import request from "supertest";
 import { faker } from "@faker-js/faker";
 
-// const generateJWT = require("../../helpers/generate_jwt.js");
-//importar models
-
 describe("test the test", () => {
   const sumar = (a, b) => a + b;
   describe("Testing unitario con Jest", () => {
@@ -18,24 +15,21 @@ describe("test the test", () => {
 });
 
 describe("Crud Users", () => {
-  // primero users y despues products ?
   // https://fakerjs.dev/api/simpleFaker.html data de feiker
 
   const getId = async () => {
-
-      const response = await request(app).get("/api/v1/user/admin");
-      const id = response.body.user[0].id;
-      return id;
-
+    const response = await request(app).get("/api/v1/user/admin");
+    const id = response.body.user[0].id;
+    return id;
   };
 
   const fakeUser = {
-    rut: faker.number.int({ min: 10, max: 100 }) ,
+    rut: faker.number.int({ min: 10, max: 100 }),
     name: faker.person.firstName(),
     last_name: faker.person.lastName(),
-    postal_code: faker.number.int({ min: 10, max: 100 }) ,
+    postal_code: faker.number.int({ min: 10, max: 100 }),
     email: faker.internet.email(),
-    password: faker.number.int({ min: 166666, max: 100000000 }) ,
+    password: faker.number.int({ min: 166666, max: 100000000 }),
     birth_date: faker.date.birthdate(),
     rol: "user"
   };
@@ -43,9 +37,9 @@ describe("Crud Users", () => {
   const fakeUserUpdate = {
     name: faker.animal.cow(),
     last_name: faker.animal.horse(),
-    postal_code: faker.number.int({ min: 10, max: 100 }) ,
+    postal_code: faker.number.int({ min: 10, max: 100 }),
     email: faker.internet.email(),
-    password: faker.number.int({ min: 166666, max: 100000000 }) ,
+    password: faker.number.int({ min: 166666, max: 100000000 }),
     birth_date: faker.date.birthdate(),
     rol: "user"
   };
@@ -69,22 +63,9 @@ describe("Crud Users", () => {
       .put(`/api/v1/user/${id}`)
       // .set("Authorization", `Bearer ${token}`)
       .send(fakeUserUpdate);
-    console.log(response)
+    console.log(response);
     expect(response.statusCode).toBe(200);
   }, 3000);
-
-  // it(" patch a single value from a product ", async () => {
-  //   const id = await getId()
-  //   const response = await request(app)
-  //     .patch(`/api/v1/admin/product/${id}`)
-  //     // .set("Authorization", `Bearer ${token}`)
-  //     .send({
-  //       name: "AYUUUUUUUUUUUUUUDA"
-  //     });
-  //   console.log(response.data)
-  //   expect(response.statusCode).toBe(200);
-  //   expect(response.body.products).toBeTruthy();
-  // });
 
   it("finds USER ", async () => {
     const response = await request(app).get("/api/v1/user/admin/");
@@ -94,9 +75,9 @@ describe("Crud Users", () => {
 
   it("finds a single product by ID ", async () => {
     const id = await getId();
-    console.log(id)
+    console.log(id);
     const response = await request(app)
-    // console.log(response);
+      // console.log(response);
       .get(`/api/v1/user/admin/${id}`);
     // .set("Authorization", `Bearer ${token}`);
     expect(response.statusCode).toBe(200);

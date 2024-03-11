@@ -7,16 +7,15 @@ import {
   getUserId,
   getFavoritesByUser,
   addToFavorite,
-  deleteUserById,
+  deleteUserById
 } from "../../src/api/v1/controllers/usercontroller.js";
-//import { validateParametersUserGrd } from "../../middlewares/validateParamsUserGrd.js";
 // import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 
 const router = express.Router();
 
 //router.post("/user", validateParametersUser, createNewUser);
 router.post("/user", createNewUser); //ok
-router.put("/user/:id", updateUser);  //ok
+router.put("/user/:id", updateUser); //ok
 router.get("/user/admin", getAllUser);
 router.get("/user/admin/:id", getUserId); //ok
 router.get("/user/favorite/like/:id", getFavoritesByUser); //ok

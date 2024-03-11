@@ -20,9 +20,7 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     } = req.body;
-
     //  console.log("body  : ",req.body)
-
     const result = await createUser(
       rut,
       name,
@@ -33,9 +31,7 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     );
-
     //  console.log("reultado : ",result)
-
     res.status(201).json({ user: result });
   } catch (error) {
     res.status(400).json(error.message);
@@ -55,7 +51,6 @@ const updateUser = async (req, res) => {
       birth_date,
       rol
     } = req.body;
-
     const result = await updateUsers(
       id,
       rut,
@@ -73,8 +68,6 @@ const updateUser = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
-
-
 
 const getAllUser = async (req, res) => {
   try {
@@ -127,9 +120,9 @@ const addToFavorite = async (req, res) => {
 const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;
-        if (!id) {
-          return res.status(404).json({ message: "Usuario no encontrado" });
-        }
+    if (!id) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
     const deletedUser = await deleteUserByIds(id);
     res
       .status(200)

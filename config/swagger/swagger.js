@@ -7,15 +7,15 @@ const options = {
     info: {
       title: "Jabones Vegan",
       version: "1.0.0",
-      description: "API para la venta de jabones",
+      description: "API para la venta de jabones"
     },
     servers: [
       {
-        url: "http://localhost:3000/api/v1",
-      },
-    ],
+        url: "http://localhost:3000/api/v1"
+      }
+    ]
   },
-  apis: ["config/routes/*.js"], //está llamando a todas las routes
+  apis: ["config/routes/*.js"] //está llamando a todas las routes
 };
 
 const specs = swaggerJsdoc(options);
@@ -27,8 +27,7 @@ export default (app) => {
     swaggerUi.setup(specs, {
       explorer: true,
       customCssUrl:
-        "https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-monokai.css",
+        "https://cdn.jsdelivr.net/npm/swagger-ui-themes@3.0.0/themes/3.x/theme-monokai.css"
     })
   );
 };
-

@@ -1,11 +1,6 @@
 import app from "../../../../../server.js";
-
 import request from "supertest";
-
 import { faker } from "@faker-js/faker";
-
-// const generateJWT = require("../../helpers/generate_jwt.js");
-//importar models
 
 describe("test the test", () => {
   const sumar = (a, b) => a + b;
@@ -21,8 +16,6 @@ describe("test the test", () => {
 
 describe("Crud Products", () => {
   describe("products related tests  ", () => {
-    // const token = generateToken();
-
     const getId = async () => {
       try {
         const response = await request(app).get("/api/v1/products");
@@ -80,16 +73,14 @@ describe("Crud Products", () => {
     });
 
     it("finds products ", async () => {
-      const response = await request(app)
-        .get("/api/v1/products");
+      const response = await request(app).get("/api/v1/products");
       // .set("Authorization", `Bearer ${token}`);
       expect(response.statusCode).toBe(200);
     });
 
     it("finds a single product by ID ", async () => {
       const id = await getId();
-      const response = await request(app)
-        .get(`/api/v1/admin/product/${id}`);
+      const response = await request(app).get(`/api/v1/admin/product/${id}`);
       // .set("Authorization", `Bearer ${token}`);
       // expect(response.statusCode).toBe(200);
       // console.log(response);
@@ -105,46 +96,4 @@ describe("Crud Products", () => {
       expect(204);
     });
   });
-
-  // describe("GET /api/v1/jabon with FAKE params", () => {
-  //   it("return 401 with invalid token", async () => {
-  //     const token = faker.string.alphanumeric();
-  //     const response = await request(app)
-  //       .get("/api/v1/products/")
-  //       .set("Authorization", `Bearer ${token}`);
-  //     expect(response.statusCode).toBe(401);
-  //   });
-  // });
-
-  // it("return message with invalid token", async () => {
-  //   const token = faker.string.alphanumeric();
-  //   const response = await request(app)
-  //   .get("/api/v1/products/")
-  //     .set("Authorization", `Bearer ${token}`);
-  //   expect(response.body.error).toBe(undefined);
-  // });
-
-  // it("return 401 with token empty", async () => {
-  //     const token = null;
-  //     const response = await request(app)
-  //       .get("/api/v1/jabon")
-  //       .set("Authorization", `Bearer ${token}`);
-  //     expect(response.statusCode).toBe(404);
-  //   });
 });
-
-/* para abajo funciona */
-
-// describe("Delete operations for /products", () => {
-//   let nonExistingId = faker.number.int({ min: 5, max: 100 });
-//   const token = generateJWT();
-
-//   it("DELETE /products/:id should return status code 404 when trying to delete a products with an id that does not exist", async () => {
-//     const response = await request(app)
-//       .delete(`/products/${nonExistingId}`)
-//       // .set("Authorization", `Bearer ${token}`)
-//       .send();
-//     expect(response.status).toBe(404);
-//   });
-
-// });

@@ -6,7 +6,7 @@ import loginRoutes from "./config/routes/loginRoutes.js";
 //import userRoutes from "./config/routes/userRoutes.js";
 //import travelsRouter from "./config/routes/travelRoutes.js";
 //GRD
-import userRoutesGrd from "./config/routes/userRoutesGrd.js";
+import userRoutesGrd from "./config/routes/userRoutes.js";
 // import userRoutes from "./config/routes/userRoutes.js";
 
 const app = express();

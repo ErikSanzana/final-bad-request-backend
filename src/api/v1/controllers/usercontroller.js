@@ -5,7 +5,8 @@ import {
   getFavoritesByUsers,
   addToFavorites,
   deleteUserByIds,
-} from "../models/useModelGrd.js";
+  getUserAll
+} from "../models/userModel.js";
 
 const createNewUser = async (req, res) => {
   try {
@@ -17,7 +18,7 @@ const createNewUser = async (req, res) => {
       email,
       password,
       birth_date,
-      rol,
+      rol
     } = req.body;
 
     //  console.log("body  : ",req.body)
@@ -43,8 +44,8 @@ const createNewUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
+    const { id } = req.params;
     const {
-      id,
       rut,
       name,
       last_name,
@@ -52,7 +53,7 @@ const updateUser = async (req, res) => {
       email,
       password,
       birth_date,
-      rol,
+      rol
     } = req.body;
 
     const result = await updateUsers(
@@ -73,16 +74,27 @@ const updateUser = async (req, res) => {
   }
 };
 
-const getUserId = async (req, res) => {
+
+
+const getAllUser = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const user = await getUser(id);
-
+    const user = await getUserAll();
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
+    res.status(200).json({ user });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
+const getUserId = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const user = await getUser(id);
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
     res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -91,15 +103,8 @@ const getUserId = async (req, res) => {
 
 const getFavoritesByUser = async (req, res) => {
   try {
-    const { userId } = req.params;
-
-    const favorites = await getFavoritesByUsers(userId);
-
-    if (!favorites) {
-      return res
-        .status(404)
-        .json({ message: "No se encontraron favoritos para este usuario" });
-    }
+    const client_rut = req.params.id;
+    const favorites = await getFavoritesByUsers(client_rut);
 
     res.status(200).json({ favorites });
   } catch (error) {
@@ -109,9 +114,9 @@ const getFavoritesByUser = async (req, res) => {
 
 const addToFavorite = async (req, res) => {
   try {
-    const { userId, productId } = req.body;
-
-    const favorite = await addToFavorites(userId, productId);
+    const { client_rut, product_id } = req.body;
+    console.log(req.body);
+    const favorite = await addToFavorites(client_rut, product_id);
 
     res.status(201).json({ favorite });
   } catch (error) {
@@ -122,13 +127,10 @@ const addToFavorite = async (req, res) => {
 const deleteUserById = async (req, res) => {
   try {
     const { id } = req.params;
-
+        if (!id) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+        }
     const deletedUser = await deleteUserByIds(id);
-
-    if (!deletedUser) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-
     res
       .status(200)
       .json({ message: "Usuario eliminado correctamente", user: deletedUser });
@@ -144,4 +146,5 @@ export {
   getFavoritesByUser,
   addToFavorite,
   deleteUserById,
+  getAllUser
 };

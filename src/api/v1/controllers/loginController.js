@@ -1,4 +1,4 @@
-import { byEmail } from "../models/userModel.js";
+// import { byEmail } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { findError } from "../utils/utils.js"; 

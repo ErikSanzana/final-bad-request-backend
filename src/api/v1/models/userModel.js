@@ -1,83 +1,106 @@
 import pool from "../../../../config/db/conectionDb.js";
-import bcrypt from "bcryptjs";
 
-// datos usuarios    ( id, rut, name, last_name, postal_code, email, password, birth_date, rol )
-// rol= admin debe ser un usuario ya creado en la DB
+// USER es palabra reservada en postgresql, al llamar usar "user"
 
-const createUser = async (id, rut, name, last_name, postal_code, email, password, birth_date, rol  ) => {
-  const hashedPassword = bcrypt.hashSync(password);
-
+export const createUser = async (
+  rut,
+  name,
+  last_name,
+  postal_code,
+  email,
+  password,
+  birth_date,
+  rol
+) => {
   const SQLquery = {
-    text: `INSERT INTO user (rut, name, last_name, postal_code, email, password, birth_date, rol) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ;`,
-    values: [rut, name, last_name, postal_code, email, hashedPassword, birth_date, rol , user],
+    text: 'INSERT INTO "user" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ; ',
+    values: [
+      rut,
+      name,
+      last_name,
+      postal_code,
+      email,
+      password,
+      birth_date,
+      rol
+    ]
   };
-
-  // console.log("query?", SQLquery)
-
+  // console.log(SQLquery)
   const response = await pool.query(SQLquery);
-
-  // console.table("response?", response)
-
+  // console.log(response)
   return response.rows[0];
 };
 
-
-const byEmail = async ({ email }) => {
+export const updateUsers = async (
+  id,
+  rut,
+  name,
+  last_name,
+  postal_code,
+  email,
+  password,
+  birth_date,
+  rol
+) => {
   const SQLquery = {
-    text: "SELECT * FROM user WHERE email = $1",
-    values: [email],
+    text: 'UPDATE "user" SET rut = COALESCE($1, rut), name = COALESCE($2, name), last_name = COALESCE($3, last_name), postal_code = COALESCE($4, postal_code), email = COALESCE($5, email), password = COALESCE($6, password), birth_date = COALESCE($7, birth_date), rol = COALESCE($8, rol) WHERE id = $9 RETURNING *;',
+    values: [
+      rut,
+      name,
+      last_name,
+      postal_code,
+      email,
+      password,
+      birth_date,
+      rol,
+      id,
+    ]
   };
   const response = await pool.query(SQLquery);
-  if (response.rowCount == 0) {
-    throw new Error("Not Found post from that mail");
-  }
   return response.rows[0];
 };
 
-
-//rut cuenta como el id de cada usuario para esto como es unico... 
-const getByRut = async ({ rut }) => {
-  const SQLquery = {
-    text: "SELECT * FROM user WHERE rut = $1 ; ",
-    values: [rut],
+export const getUserAll = async (id) => {
+  const query = {
+    text: 'SELECT * FROM "user"'
   };
-  const response = await pool.query(SQLquery);
-  if (response.rowCount == 0) {
-    throw new Error("Not Found users whit that RUT ");
-  }
-  console.table(response)
+  const response = await pool.query(query);
+
   return response.rows;
 };
 
-
-
-// add to  on favorites
-
-const createFavorites = async (client_rut, product_id) => {
-  const SQLquery = {
-    text: "INSERT INTO favorites (client_rut, product_id) VALUES ($1, $2) RETURNING *",
-    values: [client_rut, product_id],
+export const getUser = async (id) => {
+  const query = {
+    text: 'SELECT * FROM "user" WHERE id = $1',
+    values: [id]
   };
-  const response = await pool.query(SQLquery);
-  return response.rows;
+  const response = await pool.query(query);
+  return response.rows[0];
 };
 
-const liked = async (client_id) => {
-  const SQLquery = {
-    text: "SELECT * FROM favorites WHERE client_id = $1",
-    values: [client_id],
+export const getFavoritesByUsers = async (client_rut) => {
+  const query = {
+    text: 'SELECT * FROM "favorites" WHERE client_rut = $1;',
+    values: [client_rut]
   };
-  const response = await pool.query(SQLquery);
-  return response.rows;
+  const response = await pool.query(query);
+  return response.rows[0];
 };
 
-const actualize = async (client_id) => {
-  const SQLquery = {
-    //text: "SELECT * FROM favorites WHERE client_id = $1",
-    //values: [client_id],
+export const addToFavorites = async (client_rut, product_id) => {
+  const query = {
+    text: 'INSERT INTO "favorites" (client_rut, product_id) VALUES ($1, $2) RETURNING *',
+    values: [client_rut, product_id]
   };
-  const response = await pool.query(SQLquery);
-  return response.rows;
+  const response = await pool.query(query);
+  return response.rows[0];
 };
 
-export { createUser, byEmail, createFavorites, liked, actualize };
+export const deleteUserByIds = async (id) => {
+  const query = {
+    text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
+    values: [id]
+  };
+  const response = await pool.query(query);
+  return response.rows[0];
+};

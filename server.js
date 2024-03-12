@@ -1,14 +1,14 @@
 import express from "express";
 import cors from "cors";
-import { logger } from "logger-express";  //NO ACTIVAR cuando se teste  por algun motivo rompe todo
+import { logger } from "logger-express";  //NO ACTIVAR cuando se testeo  por algun motivo rompe todo => segun profe es problema de el middleware asi que se comenta en testeo.
 import productRoutes from "./config/routes/productRoutes.js";
 import loginRoutes from "./config/routes/loginRoutes.js";
 import userRoutes from "./config/routes/userRoutes.js";
+// import{V1SwaggerDocs } from './v1/swagger'
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-// import{V1SwaggerDocs } from './v1/swagger'
 
 // swagger
 app.options("*", cors());
@@ -25,7 +25,7 @@ app.listen(PORT, (error) => {
     console.log(` app listening at ⚡http://localhost:${PORT}⚡`);
     // console.log(`Swagger docs available at http://localhost:${PORT}/api/v1/docs`);
   }
-  V1SwaggerDocs(app, PORT)
+  // V1SwaggerDocs(app, PORT)
 });
 
 export default app;

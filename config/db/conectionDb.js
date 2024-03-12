@@ -8,7 +8,7 @@ const pool = new pg.Pool({
   password: process.env.PASSWORD_DB,
   database: process.env.NAME_DATABASE,
   host: process.env.DB_HOST,
-  port: process.env.DB_PORT
+  port: process.env.DB_PORT,
   // allowExitOnIdle: true
   // connectionString: process.env.DATABASE_URL,
 });

@@ -60,7 +60,6 @@ const destroyProduct = async (id) => {
     values: [id]
   };
   const response = await pool.query(SQLquery);
-
   return response.rowCount[0];
 };
 
@@ -84,6 +83,7 @@ const patchUpdateProduct = async (
     console.log(error);
   }
 };
+
 // pal carro
 
 const createStoreCart = async (
@@ -101,8 +101,8 @@ const createStoreCart = async (
   return response.rows[0];
 };
 
-//para buy order 66
 
+//para buy order 66
 const createBuyOrder = async (
   cart_id,
   client_rut,

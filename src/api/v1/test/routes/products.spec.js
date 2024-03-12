@@ -1,6 +1,8 @@
 import app from "../../../../../server.js";
 import request from "supertest";
-import { faker } from "@faker-js/faker";
+import { getId } from "./helpers/testHelpers.js";
+import { fakeProduct } from "./helpers/testHelpers.js";
+import { fakeProductUpdate } from "./helpers/testHelpers.js";
 
 describe("test the test", () => {
   const sumar = (a, b) => a + b;
@@ -16,31 +18,7 @@ describe("test the test", () => {
 
 describe("Crud Products", () => {
   describe("products related tests  ", () => {
-    const getId = async () => {
-      try {
-        const response = await request(app).get("/api/v1/products");
-        const id = response.body.products[0].id;
-        return id;
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const fakeProduct = {
-      name: "TesterProperty",
-      description: faker.commerce.productDescription(),
-      price: faker.commerce.price({ min: 100, max: 99999, dec: 0 }),
-      stock: faker.number.int(99),
-      product_image: faker.image.urlLoremFlickr({ category: "kitten" })
-    };
-
-    const fakeProductUpdate = {
-      name: "TesterProperty",
-      description: faker.airline.aircraftType(),
-      price: faker.number.int(50),
-      stock: faker.number.int(10),
-      product_image: faker.image.urlLoremFlickr({ category: "dog" })
-    };
+   
 
     it("post a new product ", async () => {
       const response = await request(app)
@@ -82,17 +60,17 @@ describe("Crud Products", () => {
       const id = await getId();
       const response = await request(app).get(`/api/v1/admin/product/${id}`);
       // .set("Authorization", `Bearer ${token}`);
-      // expect(response.statusCode).toBe(200);
       // console.log(response);
       expect(response.statusCode).toBe(200);
     });
 
     it("Deletes a product (faker created)", async () => {
       const id = await getId();
-      const response = await request(app)
+      const forDelete = await request(app)
         .delete(`/api/v1/product/${id}`)
         // .set("Authorization", `Bearer ${token}`)
         .send();
+      console.log(forDelete)
       expect(204);
     });
   });

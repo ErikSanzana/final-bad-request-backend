@@ -84,6 +84,10 @@ Tansuani{
     -se crea updateUser en userroutes
     -se inscribe updateUser en usercontroler. PENDIENTE REVISAR CODIGO Y FUNCIONALIDAD
     -se crea actualize en usermodels
+
+    12/03/2024:
+    -se crea ".env.example" para quien reciba el código sepa como fijar sus contraseñas.
+    -
 }
 Ximena{
     se instala swagger

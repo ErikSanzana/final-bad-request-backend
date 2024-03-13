@@ -20,7 +20,7 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     } = req.body;
-    //  console.log("body  : ",req.body)
+    //console.log("body:",req.body)
     const result = await createUser(
       rut,
       name,
@@ -31,12 +31,14 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     );
-    //  console.log("reultado : ",result)
+    console.log("reultado : ",result)
     res.status(201).json({ user: result });
   } catch (error) {
+    console.log(error)
     res.status(400).json(error.message);
   }
 };
+//console.log(createNewUser)
 
 const updateUser = async (req, res) => {
   try {

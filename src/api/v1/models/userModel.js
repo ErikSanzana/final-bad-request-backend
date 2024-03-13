@@ -1,5 +1,5 @@
 import pool from "../../../../config/db/conectionDb.js";
-
+console.log(pool)
 export const createUser = async (
   rut,
   name,
@@ -23,9 +23,9 @@ export const createUser = async (
       rol
     ]
   };
-  // console.log(SQLquery)
+  console.log(SQLquery)
   const response = await pool.query(SQLquery);
-  // console.log(response)
+  console.log(response)
   return response.rows[0];
 };
 

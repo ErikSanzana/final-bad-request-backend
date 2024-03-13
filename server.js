@@ -14,9 +14,11 @@ const PORT = process.env.PORT || 3000;
 app.options("*", cors());
 app.use(express.json());
 app.use(logger());
-app.use("/api/v1", productRoutes);
-app.use("/api/v1", loginRoutes);
+app.use("/api/v1/store", productRoutes);
+app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1", userRoutes);
+
+//deben llevar rutas diferentes  => o hay error
 
 app.listen(PORT, (error) => {
   if (error) {

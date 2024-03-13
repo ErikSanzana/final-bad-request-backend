@@ -1,24 +1,24 @@
 import express from "express";
 import cors from "cors";
-import { logger } from "logger-express";  //NO ACTIVAR cuando se testeo  por algun motivo rompe todo => segun profe es problema de el middleware asi que se comenta en testeo.
+// import { logger } from "logger-express";  //NO ACTIVAR cuando se testeo  por algun motivo rompe todo => segun profe es problema de el middleware asi que se comenta en testeo.
 import productRoutes from "./config/routes/productRoutes.js";
 import loginRoutes from "./config/routes/loginRoutes.js";
 import userRoutes from "./config/routes/userRoutes.js";
 // import{V1SwaggerDocs } from './v1/swagger'
 
-
 const app = express();
-const PORT = process.env.PORT || 3000;
-
 // swagger
+// app.use(logger());
 app.options("*", cors());
 app.use(express.json());
-app.use(logger());
+//deben llevar rutas diferentes  => o hay error
 app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1", userRoutes);
 
-//deben llevar rutas diferentes  => o hay error
+// const PORT = 3001
+
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT, (error) => {
   if (error) {

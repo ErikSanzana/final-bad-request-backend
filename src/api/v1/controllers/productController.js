@@ -20,6 +20,8 @@ const createProducts = async (req, res) => {
       product_image
     });
     res.status(201).json({ product: newProduct });
+    console.log(newProduct);
+
   } catch (error) {
     console.log(error);
     // const errorFound = findError(error.code);

@@ -15,7 +15,6 @@ describe("test the test", () => {
 });
 
 describe("Crud Users", () => {
-  // https://fakerjs.dev/api/simpleFaker.html data de feiker
 
   const getId = async () => {
     const response = await request(app).get("/api/v1/user/admin");
@@ -73,7 +72,7 @@ describe("Crud Users", () => {
     expect(response.statusCode).toBe(200);
   });
 
-  it("finds a single product by ID ", async () => {
+  it("finds a single uyser by ID ", async () => {
     const id = await getId();
     console.log(id);
     const response = await request(app)

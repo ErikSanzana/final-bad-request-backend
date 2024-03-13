@@ -20,7 +20,6 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     } = req.body;
-    //console.log("body:",req.body)
     const result = await createUser(
       rut,
       name,
@@ -31,7 +30,6 @@ const createNewUser = async (req, res) => {
       birth_date,
       rol
     );
-    console.log("reultado : ",result)
     res.status(201).json({ user: result });
   } catch (error) {
     console.log(error)
@@ -74,9 +72,6 @@ const updateUser = async (req, res) => {
 const getAllUser = async (req, res) => {
   try {
     const user = await getUserAll();
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
     res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -100,7 +95,6 @@ const getFavoritesByUser = async (req, res) => {
   try {
     const client_rut = req.params.id;
     const favorites = await getFavoritesByUsers(client_rut);
-
     res.status(200).json({ favorites });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -110,9 +104,7 @@ const getFavoritesByUser = async (req, res) => {
 const addToFavorite = async (req, res) => {
   try {
     const { client_rut, product_id } = req.body;
-    console.log(req.body);
     const favorite = await addToFavorites(client_rut, product_id);
-
     res.status(201).json({ favorite });
   } catch (error) {
     res.status(500).json({ message: error.message });

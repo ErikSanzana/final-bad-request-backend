@@ -2,6 +2,9 @@ import pool from "../../../../config/db/conectionDb.js";
 //ACTUALIZAR PARAMETROS SEGÚN TABLAS DE LA BASE DE DATOS
 // parametros desde la DB para productos  ( name, description, price, stock, product_image )
 
+
+
+//table: products
 const getProduct = async () => {
   const SQLquery = { text: "SELECT * FROM products" };
   const response = await pool.query(SQLquery);
@@ -102,7 +105,7 @@ const createStoreCart = async (
 };
 
 
-//para buy order 66
+//table: buy_order
 const createBuyOrder = async (
   cart_id,
   client_rut,
@@ -113,7 +116,7 @@ const createBuyOrder = async (
   total_price
 ) => {
   const SQLquery = {
-    text: "INSERT INTO store_cart (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
+    text: "INSERT INTO buy_order (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
     values: [
       cart_id,
       client_rut,
@@ -128,7 +131,7 @@ const createBuyOrder = async (
   return response.rows[0];
 };
 
-// historial, para el usuario o para el admin
+// table: order_history
 
 const createOrderHistory = async (
   client_rut,
@@ -154,6 +157,8 @@ const createOrderHistory = async (
   const response = await pool.query(SQLquery);
   return response.rows[0];
 };
+
+
 
 export {
   getProduct,

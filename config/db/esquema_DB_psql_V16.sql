@@ -6,10 +6,6 @@ SET search_path TO public;
 DROP EXTENSION IF EXISTS "uuid-ossp";
 CREATE EXTENSION "uuid-ossp" SCHEMA public;
 
-SELECT "user".id FROM 
-
-RETURNING
-
 CREATE TABLE "user" (
   "id" SERIAL UNIQUE NOT NULL,
   "rut" INT UNIQUE PRIMARY KEY,
@@ -18,18 +14,18 @@ CREATE TABLE "user" (
   "postal_code" INT UNIQUE NOT NULL,
   "email" VARCHAR UNIQUE NOT NULL,
   "password" VARCHAR NOT NULL CHECK (length(password) >= 6),
-  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ),
+  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ), -- cambiar fecha americana a latina
   "rol" VARCHAR NOT NULL,
   "is_banned" BOOLEAN NOT NULL DEFAULT (false),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW(),
-  "updated_at" TIMESTAMP
+  "updated_at" TIMESTAMP NOT NULL DEFAULT NOW() 
 );
 
 CREATE TABLE "address" (
   "postal_code" INT UNIQUE NOT NULL PRIMARY KEY REFERENCES "user"(postal_code),
   "street_name" VARCHAR NOT NULL,
   "phone" VARCHAR NOT NULL,
-  "Number" INT NOT NULL,
+  "number" INT NOT NULL,
   "commune" VARCHAR NOT NULL,
   "city" VARCHAR NOT NULL,
   "region" VARCHAR NOT NULL,
@@ -87,7 +83,6 @@ CREATE TABLE "order_history" (
   "total_price" INT NOT NULL,
   "created_at" TIMESTAMP DEFAULT NOW() NOT NULL,
   "send_at" TIMESTAMP
-
 );
 
 

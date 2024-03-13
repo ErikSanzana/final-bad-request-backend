@@ -1,8 +1,7 @@
 import app from "../../../../../server.js";
 import request from "supertest";
-import { getId } from "./helpers/testHelpers.js";
-import { fakeProduct } from "./helpers/testHelpers.js";
-import { fakeProductUpdate } from "./helpers/testHelpers.js";
+import { faker } from "@faker-js/faker";
+
 
 describe("test the test", () => {
   const sumar = (a, b) => a + b;
@@ -16,13 +15,39 @@ describe("test the test", () => {
   });
 });
 
+const getId = async () => {
+  try {
+    const response = await request(app).get("/api/v1/products");
+    const id = response.body.products[0].id;
+    return id;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const fakeProduct = {
+  name: "TesterProperty",
+  description: faker.commerce.productDescription(),
+  price: faker.commerce.price({ min: 100, max: 99999, dec: 0 }),
+  stock: faker.number.int(99),
+  product_image: faker.image.urlLoremFlickr({ category: "kitten" })
+};
+
+const fakeProductUpdate = {
+  name: "TesterProperty",
+  description: faker.airline.aircraftType(),
+  price: faker.number.int(50),
+  stock: faker.number.int(10),
+  product_image: faker.image.urlLoremFlickr({ category: "dog" })
+};
+
 describe("Crud Products", () => {
   describe("products related tests  ", () => {
    
 
     it("post a new product ", async () => {
       const response = await request(app)
-        .post("/api/v1/admin/products")
+        .post("/api/v1/store/admin/products")
         // .set("Authorization", `Bearer ${token}`)
         .send(fakeProduct);
       expect(response.statusCode).toBe(201);
@@ -31,7 +56,7 @@ describe("Crud Products", () => {
     it(" update a product by id", async () => {
       const id = await getId();
       const response = await request(app)
-        .put(`/api/v1/admin/product/${id}`)
+        .put(`/api/v1/store/admin/product/${id}`)
         // .set("Authorization", `Bearer ${token}`)
         .send(fakeProductUpdate);
       expect(response.statusCode).toBe(200);
@@ -40,7 +65,7 @@ describe("Crud Products", () => {
     it(" patch a single value from a product ", async () => {
       const id = await getId();
       const response = await request(app)
-        .patch(`/api/v1/admin/product/${id}`)
+        .patch(`/api/v1/store/admin/product/${id}`)
         // .set("Authorization", `Bearer ${token}`)
         .send({
           name: "AYUUUUUUUUUUUUUUDA"
@@ -51,14 +76,14 @@ describe("Crud Products", () => {
     });
 
     it("finds products ", async () => {
-      const response = await request(app).get("/api/v1/products");
+      const response = await request(app).get("/api/v1/store/products");
       // .set("Authorization", `Bearer ${token}`);
       expect(response.statusCode).toBe(200);
     });
 
     it("finds a single product by ID ", async () => {
       const id = await getId();
-      const response = await request(app).get(`/api/v1/admin/product/${id}`);
+      const response = await request(app).get(`/api/v1/store/product/${id}`);
       // .set("Authorization", `Bearer ${token}`);
       // console.log(response);
       expect(response.statusCode).toBe(200);

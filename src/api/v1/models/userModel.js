@@ -1,6 +1,7 @@
 import pool from "../../../../config/db/conectionDb.js";
-console.log(pool)
-export const createUser = async (
+
+//Table: user
+const createUser = async (
   rut,
   name,
   last_name,
@@ -23,13 +24,11 @@ export const createUser = async (
       rol
     ]
   };
-  console.log(SQLquery)
   const response = await pool.query(SQLquery);
-  console.log(response)
   return response.rows[0];
 };
 
-export const updateUsers = async (
+const updateUsers = async (
   id,
   rut,
   name,
@@ -58,16 +57,15 @@ export const updateUsers = async (
   return response.rows[0];
 };
 
-export const getUserAll = async (id) => {
-  const query = {
-    text: 'SELECT * FROM "user"'
+const getUserAll = async () => {
+  const SQLquery = {
+    text: 'SELECT * FROM "user" ;'
   };
-  const response = await pool.query(query);
-
-  return response.rows;
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
 };
 
-export const getUser = async (id) => {
+const getUser = async (id) => {
   const query = {
     text: 'SELECT * FROM "user" WHERE id = $1',
     values: [id]
@@ -76,7 +74,56 @@ export const getUser = async (id) => {
   return response.rows[0];
 };
 
-export const getFavoritesByUsers = async (client_rut) => {
+const deleteUserByIds = async (id) => {
+  const query = {
+    text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
+    values: [id]
+  };
+  const response = await pool.query(query);
+  if (response.rowCount == 0) {
+    throw new Error("This item has already been deleted or not exist...");
+  }
+  return response.rows;
+};
+
+
+//Address table
+const createAddress = async ( postal_code, street_name, phone, number, comune, city, region )=> {
+  const SQLquery = {
+    text: 'INSERT INTO address (postal_code, street_name, phone, number, comune, city, region ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ; ',
+    values: [ postal_code, street_name, phone, number, comune, city, region ]
+  };
+
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
+
+
+const editAddress = async (postal_code, street_name, phone, number, comune, city, region) => {
+  const SQLquery = {
+    text: 'UPDATE SET street_name = COALESCE($2, street_name), phone = COALESCE($3, phone), number = COALESCE($4, number), comune = COALESCE($5, comune), city = COALESCE($6, city), region = COALESCE($7, region), WHERE postal_code = $1 RETURNING *;',
+    values: [postal_code, street_name, phone, number, comune, city, region],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
+
+const deleteAddress = async (postal_code) => {
+  const SQLquery  = {
+    text: 'DELETE FROM "address" WHERE postal_code = $1 RETURNING *',
+    values: [postal_code]
+  };
+  const response = await pool.query(SQLquery);
+  if (response.rowCount == 0) {
+    throw new Error("This item has already been deleted or not exist...");
+  }
+  return response.rows;
+}
+
+
+//table: favorites
+
+const getFavoritesByUsers = async (client_rut) => {
   const query = {
     text: 'SELECT * FROM "favorites" WHERE client_rut = $1;',
     values: [client_rut]
@@ -85,7 +132,7 @@ export const getFavoritesByUsers = async (client_rut) => {
   return response.rows[0];
 };
 
-export const addToFavorites = async (client_rut, product_id) => {
+const addToFavorites = async (client_rut, product_id) => {
   const query = {
     text: 'INSERT INTO "favorites" (client_rut, product_id) VALUES ($1, $2) RETURNING *',
     values: [client_rut, product_id]
@@ -93,12 +140,26 @@ export const addToFavorites = async (client_rut, product_id) => {
   const response = await pool.query(query);
   return response.rows[0];
 };
-
-export const deleteUserByIds = async (id) => {
-  const query = {
-    text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
-    values: [id]
+const deleteFavorites = async (favorites_id) => {
+  const SQLquery  = {
+    text: 'DELETE FROM "favorites" WHERE favorites_id = $1 RETURNING *',
+    values: [favorites_id]
   };
-  const response = await pool.query(query);
-  return response.rows[0];
+  const response = await pool.query(SQLquery);
+  if (response.rowCount == 0) {
+    throw new Error("This item has already been deleted or not exist...");
+  }
+  return response.rows;
+
+}
+
+
+export {
+  createUser,
+  updateUsers,
+  getUser,
+  getFavoritesByUsers,
+  addToFavorites,
+  deleteUserByIds,
+  getUserAll
 };

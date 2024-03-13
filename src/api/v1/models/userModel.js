@@ -3,7 +3,6 @@ import bcrypt from "bcryptjs";
 
 //Table: user
 const createUser = async (
-
   rut,
   name,
   last_name,
@@ -28,7 +27,7 @@ const createUser = async (
     ],
   };
   const response = await pool.query(SQLquery);
-  return response.rows[0];
+  return response.rows;
 };
 
 const updateUsers = async (
@@ -62,7 +61,7 @@ const updateUsers = async (
 
 const getUserAll = async () => {
   const SQLquery = {
-    text: 'SELECT * FROM "user" ;'
+    text: 'SELECT * FROM "user" ;',
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -80,7 +79,7 @@ const getUser = async (id) => {
 const deleteUserByIds = async (id) => {
   const query = {
     text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
-    values: [id]
+    values: [id],
   };
   const response = await pool.query(query);
   if (response.rowCount == 0) {
@@ -89,22 +88,36 @@ const deleteUserByIds = async (id) => {
   return response.rows;
 };
 
-
 //Address table
-const createAddress = async ( postal_code, street_name, phone, number, comune, city, region )=> {
+const createAddress = async (
+  postal_code,
+  street_name,
+  phone,
+  number,
+  comune,
+  city,
+  region
+) => {
   const SQLquery = {
-    text: 'INSERT INTO address (postal_code, street_name, phone, number, comune, city, region ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ; ',
-    values: [ postal_code, street_name, phone, number, comune, city, region ]
+    text: "INSERT INTO address (postal_code, street_name, phone, number, comune, city, region ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ; ",
+    values: [postal_code, street_name, phone, number, comune, city, region],
   };
 
   const response = await pool.query(SQLquery);
   return response.rows[0];
 };
 
-
-const editAddress = async (postal_code, street_name, phone, number, comune, city, region) => {
+const editAddress = async (
+  postal_code,
+  street_name,
+  phone,
+  number,
+  comune,
+  city,
+  region
+) => {
   const SQLquery = {
-    text: 'UPDATE SET street_name = COALESCE($2, street_name), phone = COALESCE($3, phone), number = COALESCE($4, number), comune = COALESCE($5, comune), city = COALESCE($6, city), region = COALESCE($7, region), WHERE postal_code = $1 RETURNING *;',
+    text: "UPDATE SET street_name = COALESCE($2, street_name), phone = COALESCE($3, phone), number = COALESCE($4, number), comune = COALESCE($5, comune), city = COALESCE($6, city), region = COALESCE($7, region), WHERE postal_code = $1 RETURNING *;",
     values: [postal_code, street_name, phone, number, comune, city, region],
   };
   const response = await pool.query(SQLquery);
@@ -114,7 +127,7 @@ const editAddress = async (postal_code, street_name, phone, number, comune, city
 const deleteAddress = async (postal_code) => {
   const SQLquery = {
     text: 'DELETE FROM "address" WHERE postal_code = $1 RETURNING *',
-    values: [postal_code]
+    values: [postal_code],
   };
   const response = await pool.query(SQLquery);
   if (response.rowCount == 0) {
@@ -122,7 +135,6 @@ const deleteAddress = async (postal_code) => {
   }
   return response.rows;
 };
-
 
 //table: favorites
 
@@ -146,7 +158,7 @@ const addToFavorites = async (client_rut, product_id) => {
 const deleteFavorites = async (favorites_id) => {
   const SQLquery = {
     text: 'DELETE FROM "favorites" WHERE favorites_id = $1 RETURNING *',
-    values: [favorites_id]
+    values: [favorites_id],
   };
   const response = await pool.query(SQLquery);
   if (response.rowCount == 0) {
@@ -155,7 +167,7 @@ const deleteFavorites = async (favorites_id) => {
   return response.rows;
 };
 
- const byEmail = async ({ email }) => {
+const byEmail = async ({ email }) => {
   console.log(email);
   const SQLquery = {
     text: 'SELECT * FROM "user" WHERE email = $1',
@@ -174,7 +186,8 @@ export {
   deleteUserByIds,
   getUserAll,
   createAddress,
-   deleteAddress,deleteFavorites,editAddress,
-   byEmail
+  deleteAddress,
+  deleteFavorites,
+  editAddress,
+  byEmail,
 };
-

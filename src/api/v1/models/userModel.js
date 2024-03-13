@@ -109,7 +109,7 @@ const editAddress = async (postal_code, street_name, phone, number, comune, city
 };
 
 const deleteAddress = async (postal_code) => {
-  const SQLquery  = {
+  const SQLquery = {
     text: 'DELETE FROM "address" WHERE postal_code = $1 RETURNING *',
     values: [postal_code]
   };
@@ -118,7 +118,7 @@ const deleteAddress = async (postal_code) => {
     throw new Error("This item has already been deleted or not exist...");
   }
   return response.rows;
-}
+};
 
 
 //table: favorites
@@ -141,7 +141,7 @@ const addToFavorites = async (client_rut, product_id) => {
   return response.rows[0];
 };
 const deleteFavorites = async (favorites_id) => {
-  const SQLquery  = {
+  const SQLquery = {
     text: 'DELETE FROM "favorites" WHERE favorites_id = $1 RETURNING *',
     values: [favorites_id]
   };
@@ -150,8 +150,7 @@ const deleteFavorites = async (favorites_id) => {
     throw new Error("This item has already been deleted or not exist...");
   }
   return response.rows;
-
-}
+};
 
 
 export {
@@ -161,5 +160,7 @@ export {
   getFavoritesByUsers,
   addToFavorites,
   deleteUserByIds,
-  getUserAll
+  getUserAll,
+  createAddress,
+   deleteAddress,deleteFavorites,editAddress,
 };

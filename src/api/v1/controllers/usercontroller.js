@@ -8,6 +8,8 @@ import {
   getUserAll
 } from "../models/userModel.js";
 
+//Table: user
+
 const createNewUser = async (req, res) => {
   try {
     const {
@@ -36,7 +38,7 @@ const createNewUser = async (req, res) => {
     res.status(400).json(error.message);
   }
 };
-//console.log(createNewUser)
+
 
 const updateUser = async (req, res) => {
   try {
@@ -91,6 +93,34 @@ const getUserId = async (req, res) => {
   }
 };
 
+const deleteUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id) {
+      return res.status(404).json({ message: "Usuario no encontrado" });
+    }
+    const deletedUser = await deleteUserByIds(id);
+    res
+      .status(200)
+      .json({ message: "Usuario eliminado correctamente", user: deletedUser });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//Address table
+const setAddress = async (req,res) => {
+  try {
+    const params = req.params 
+    const result = await createA
+  } catch (error) {
+    
+  }
+}
+
+
+
+
 const getFavoritesByUser = async (req, res) => {
   try {
     const client_rut = req.params.id;
@@ -111,20 +141,7 @@ const addToFavorite = async (req, res) => {
   }
 };
 
-const deleteUserById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    if (!id) {
-      return res.status(404).json({ message: "Usuario no encontrado" });
-    }
-    const deletedUser = await deleteUserByIds(id);
-    res
-      .status(200)
-      .json({ message: "Usuario eliminado correctamente", user: deletedUser });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+
 
 export {
   createNewUser,

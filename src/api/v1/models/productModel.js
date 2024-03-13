@@ -115,6 +115,17 @@ const createBuyOrder = async (
   product_amount,
   total_price
 ) => {
+
+  //   Select 
+  // CONCAT(c.Nombre, " ", c.Apellido) as cliente, 
+//   COUNT(p.npedido) as NumeroPedidos,
+//   SUM(p.cantidad) as Cantidad,
+//   SUM(p.monto) as MontoTotal
+// FROM CLIENTE c
+//  INNER JOIN Pedidos p 
+//  ON (c.rut = p.Cliente_rut)
+// GROUP BY c.rut
+// ORDER BY c.Nombre;
   const SQLquery = {
     text: "INSERT INTO buy_order (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
     values: [

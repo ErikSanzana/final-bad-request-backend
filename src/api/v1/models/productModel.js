@@ -1,6 +1,5 @@
+import { text } from "express";
 import pool from "../../../../config/db/conectionDb.js";
-//ACTUALIZAR PARAMETROS SEGÚN TABLAS DE LA BASE DE DATOS
-// parametros desde la DB para productos  ( name, description, price, stock, product_image )
 
 //table: products
 const getProduct = async () => {
@@ -86,17 +85,22 @@ const patchUpdateProduct = async (
 };
 
 // teable: store_cart
-
 const createStoreCart = async (
   client_rut,
-  product_id,
+  product_code,
   product_price,
   product_amount,
   total_price
 ) => {
   const SQLquery = {
     text: "INSERT INTO store_cart (client_rut, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5) RETURNING *; ",
-    values: [client_rut, product_id, product_price, product_amount, total_price]
+    values: [
+      client_rut,
+      product_code,
+      product_price,
+      product_amount,
+      total_price
+    ]
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -121,16 +125,6 @@ const createBuyOrder = async (
   product_amount,
   total_price
 ) => {
-  //   Select
-  // CONCAT(c.Nombre, " ", c.Apellido) as cliente,
-  //   COUNT(p.npedido) as NumeroPedidos,
-  //   SUM(p.cantidad) as Cantidad,
-  //   SUM(p.monto) as MontoTotal
-  // FROM CLIENTE c
-  //  INNER JOIN Pedidos p
-  //  ON (c.rut = p.Cliente_rut)
-  // GROUP BY c.rut
-  // ORDER BY c.Nombre;
   const SQLquery = {
     text: "INSERT INTO buy_order (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
     values: [
@@ -147,8 +141,16 @@ const createBuyOrder = async (
   return response.rows[0];
 };
 
-// table: order_history
+//agregar total venta revisar donde se pueda usar..... y si se puede insertar... o solo usar desde el front ?
+const totalSaleByOrder = async (cliente_rut) => {
+  const SQLquery = {
+    text: "SELECT a.client_rut, SUM(a.products_value) AS total_value FROM (SELECT buy_order.client_rut, buy_order.product_amount * buy_order.product_price AS products_value FROM buy_order WHERE cliente_rut = $1) AS a ORDER BY a.client_rut; ",
+    values: [cliente_rut]
+  };
+  const response = await pool.query(SQLquery);
+};
 
+// table: order_history
 const createOrderHistory = async (
   client_rut,
   postal_code,

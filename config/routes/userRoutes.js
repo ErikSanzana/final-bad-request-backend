@@ -35,6 +35,4 @@ router.post("/user/address",setAddress)
 router.put("/user/address/:postal_code",updateAddress) // deberia ser id..pero id es el codigo postal D:
 router.delete("/user/address/:postal_code",removeAddress)
 
-//
-
 export default router;

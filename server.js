@@ -16,9 +16,9 @@ app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1", userRoutes);
 
-// const PORT = 3001
+// const PORT = 3001 // for tesing
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, (error) => {
   if (error) {

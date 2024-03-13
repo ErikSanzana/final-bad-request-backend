@@ -14,8 +14,6 @@ import {
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
-
-
 //products 
 router.get("/products", getAllProducts);
 router.get("/product/:id", getProductsById);

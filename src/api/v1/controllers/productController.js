@@ -10,7 +10,6 @@ import {
 } from "../models/productModel.js";
 import { findError } from "../utils/utils.js";
 
-
 //products
 const createProducts = async (req, res) => {
   try {
@@ -24,7 +23,6 @@ const createProducts = async (req, res) => {
     });
     res.status(201).json({ product: newProduct });
     console.log(newProduct);
-
   } catch (error) {
     console.log(error);
     // const errorFound = findError(error.code);
@@ -108,7 +106,6 @@ const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: "No existe el registro" });
     }
     res.json({ message: "product deleted", product: deleteProduct });
-
   } catch (error) {
     console.log(error);
     const errorFound = findError(error.code);
@@ -118,8 +115,6 @@ const deleteProduct = async (req, res) => {
   }
 };
 
-
-
 //carro de compra
 
 const addCart = async (req, res) => {
@@ -127,7 +122,7 @@ const addCart = async (req, res) => {
     // esto puede venir directo del front.. si se guardan los datos en un useState
     const {
       client_rut,
-      product_id,
+      product_code,
       product_price,
       product_amount,
       total_price
@@ -135,7 +130,7 @@ const addCart = async (req, res) => {
 
     const result = await createStoreCart(
       client_rut,
-      product_id,
+      product_code,
       product_price,
       product_amount,
       total_price
@@ -157,14 +152,12 @@ const removeFromCart = async (req, res) => {
     res.json({ message: "cart terminated", cart: result });
   } catch (error) {
     console.log(error);
-        // const errorFound = findError(error.code);
+    // const errorFound = findError(error.code);
     // return res
     //   .status(errorFound[0].status)
     //   .json({ error: errorFound[0].message });
   }
 };
-
-
 
 // crear la orden de compra
 const buyOrder = async (req, res) => {
@@ -241,5 +234,5 @@ export {
   addCart,
   buyOrder,
   salesHistory,
-  removeFromCart,
+  removeFromCart
 };

@@ -5,7 +5,8 @@ import {
   getFavoritesByUsers,
   addToFavorites,
   deleteUserByIds,
-  getUserAll
+  getUserAll,
+  createAddress
 } from "../models/userModel.js";
 
 //Table: user
@@ -109,14 +110,16 @@ const deleteUserById = async (req, res) => {
 };
 
 //Address table
-const setAddress = async (req,res) => {
+const setAddress = async (req, res) => {
   try {
-    const params = req.params 
-    const result = await createA
+    const params = req.params;
+    const result = await createAddress(params);
+    res.status(200)
+      .json({ message: "addres added", address: params });
   } catch (error) {
-    
+    res.status(500).json({ message: error.message });
   }
-}
+};
 
 
 

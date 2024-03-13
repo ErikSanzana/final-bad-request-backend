@@ -15,15 +15,17 @@ const router = express.Router();
 
 //router.post("/user", validateParametersUser, createNewUser);
 router.post("/user", createNewUser); 
-router.post("/user/address", )
+
 router.put("/user/:id", updateUser); 
 router.get("/admin/users", getAllUser); 
 router.get("/admin/users/:id", getUserId); 
 router.delete("/admin/user/:id", deleteUserById); 
-
+//favs
 router.get("/user/favorite/like/:id", getFavoritesByUser);
 router.post("/user/favorites", addToFavorite); 
 //falta ruta para eliminar favoritos
 
+//address
+router.post("/user/address",)
 
 export default router;

@@ -2,8 +2,6 @@ import pool from "../../../../config/db/conectionDb.js";
 //ACTUALIZAR PARAMETROS SEGÚN TABLAS DE LA BASE DE DATOS
 // parametros desde la DB para productos  ( name, description, price, stock, product_image )
 
-
-
 //table: products
 const getProduct = async () => {
   const SQLquery = { text: "SELECT * FROM products" };
@@ -87,7 +85,7 @@ const patchUpdateProduct = async (
   }
 };
 
-// pal carro
+// teable: store_cart
 
 const createStoreCart = async (
   client_rut,
@@ -104,6 +102,14 @@ const createStoreCart = async (
   return response.rows[0];
 };
 
+const destroyCart = async (id) => {
+  const SQLquery = {
+    text: "DELETE FROM favorites WHERE id = $1",
+    values: [id]
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
 
 //table: buy_order
 const createBuyOrder = async (
@@ -115,17 +121,16 @@ const createBuyOrder = async (
   product_amount,
   total_price
 ) => {
-
-  //   Select 
-  // CONCAT(c.Nombre, " ", c.Apellido) as cliente, 
-//   COUNT(p.npedido) as NumeroPedidos,
-//   SUM(p.cantidad) as Cantidad,
-//   SUM(p.monto) as MontoTotal
-// FROM CLIENTE c
-//  INNER JOIN Pedidos p 
-//  ON (c.rut = p.Cliente_rut)
-// GROUP BY c.rut
-// ORDER BY c.Nombre;
+  //   Select
+  // CONCAT(c.Nombre, " ", c.Apellido) as cliente,
+  //   COUNT(p.npedido) as NumeroPedidos,
+  //   SUM(p.cantidad) as Cantidad,
+  //   SUM(p.monto) as MontoTotal
+  // FROM CLIENTE c
+  //  INNER JOIN Pedidos p
+  //  ON (c.rut = p.Cliente_rut)
+  // GROUP BY c.rut
+  // ORDER BY c.Nombre;
   const SQLquery = {
     text: "INSERT INTO buy_order (cart_id, client_rut, postal_code, product_code, product_price, product_amount, total_price) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *; ",
     values: [
@@ -169,8 +174,6 @@ const createOrderHistory = async (
   return response.rows[0];
 };
 
-
-
 export {
   getProduct,
   updateProduct,
@@ -180,5 +183,6 @@ export {
   patchUpdateProduct,
   createStoreCart,
   createBuyOrder,
-  createOrderHistory
+  createOrderHistory,
+  destroyCart
 };

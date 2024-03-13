@@ -8,7 +8,8 @@ import {
   patchProduct,
   buyOrder,
   addCart,
-  salesHistory
+  salesHistory,
+  removeFromCart
 } from "../../src/api/v1/controllers/productController.js";
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
@@ -24,16 +25,13 @@ router.delete("/admin/product/:id", deleteProduct);
 router.put("/admin/product/:id", updateProducts);
 router.patch("/admin/product/:id", patchProduct); // no son necesarias las 2
 
-
-
-//para admin
-
 // rutas para proceso de compra
-
-router.post("/user/shopppingCart", addCart);
-
+  //carro
+router.post("/user/cart", addCart);
+router.post("/user/cart/:id", removeFromCart);
+  //orden
 router.post("/user/order", buyOrder);
-
+  //historial
 router.post("/users/history", salesHistory);
 
 router.all("*", notFound); //pasar a session routee

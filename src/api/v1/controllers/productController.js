@@ -5,7 +5,8 @@ import {
   updateProduct,
   destroyProduct,
   patchUpdateProduct,
-  createStoreCart
+  createStoreCart,
+  destroyCart
 } from "../models/productModel.js";
 import { findError } from "../utils/utils.js";
 
@@ -149,7 +150,19 @@ const addCart = async (req, res) => {
   }
 };
 
-
+const removeFromCart = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await destroyCart(id);
+    res.json({ message: "cart terminated", cart: result });
+  } catch (error) {
+    console.log(error);
+        // const errorFound = findError(error.code);
+    // return res
+    //   .status(errorFound[0].status)
+    //   .json({ error: errorFound[0].message });
+  }
+};
 
 
 
@@ -227,5 +240,6 @@ export {
   patchProduct,
   addCart,
   buyOrder,
-  salesHistory
+  salesHistory,
+  removeFromCart,
 };

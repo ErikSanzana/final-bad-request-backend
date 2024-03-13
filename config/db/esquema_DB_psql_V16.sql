@@ -25,7 +25,7 @@ CREATE TABLE "address" (
   "postal_code" INT UNIQUE NOT NULL PRIMARY KEY REFERENCES "user"(postal_code),
   "street_name" VARCHAR NOT NULL,
   "phone" VARCHAR NOT NULL,
-  "number" INT NOT NULL,
+  "address_number" INT NOT NULL,
   "commune" VARCHAR NOT NULL,
   "city" VARCHAR NOT NULL,
   "region" VARCHAR NOT NULL,

@@ -7,7 +7,11 @@ import {
   getUserId,
   getFavoritesByUser,
   addToFavorite,
-  deleteUserById
+  deleteUserById,
+  setAddress,
+  updateAddress,
+  removeAddress,
+  removeFavorites
 } from "../../src/api/v1/controllers/usercontroller.js";
 // import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
@@ -23,11 +27,14 @@ router.delete("/admin/user/:id", deleteUserById);
 //favs
 router.get("/user/favorite/like/:id", getFavoritesByUser);
 router.post("/user/favorites", addToFavorite); 
-//falta ruta para eliminar favoritos
+router.delete("/user/favorites/:favorites_id", removeFavorites) //chequear tabla de favoritos 
+
 
 //address
-router.post("/user/address",)
+router.post("/user/address",setAddress)
+router.put("/user/address/:postal_code",updateAddress) // deberia ser id..pero id es el codigo postal D:
+router.delete("/user/address/:postal_code",removeAddress)
 
-// algo para gerardo 
+//
 
 export default router;

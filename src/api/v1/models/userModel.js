@@ -23,8 +23,8 @@ const createUser = async (
       email,
       hashedPassword,
       birth_date,
-      rol,
-    ],
+      rol
+    ]
   };
   const response = await pool.query(SQLquery);
   return response.rows;
@@ -52,8 +52,8 @@ const updateUsers = async (
       password,
       birth_date,
       rol,
-      id,
-    ],
+      id
+    ]
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -61,7 +61,7 @@ const updateUsers = async (
 
 const getUserAll = async () => {
   const SQLquery = {
-    text: 'SELECT * FROM "user" ;',
+    text: 'SELECT * FROM "user" ;'
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -70,16 +70,26 @@ const getUserAll = async () => {
 const getUser = async (id) => {
   const query = {
     text: 'SELECT * FROM "user" WHERE id = $1',
-    values: [id],
+    values: [id]
   };
   const response = await pool.query(query);
+  return response.rows[0];
+};
+
+const byEmail = async ({ email }) => {
+  console.log(email);
+  const SQLquery = {
+    text: 'SELECT * FROM "user" WHERE email = $1',
+    values: [email]
+  };
+  const response = await pool.query(SQLquery);
   return response.rows[0];
 };
 
 const deleteUserByIds = async (id) => {
   const query = {
     text: 'DELETE FROM "user" WHERE id = $1 RETURNING *',
-    values: [id],
+    values: [id]
   };
   const response = await pool.query(query);
   if (response.rowCount == 0) {
@@ -89,20 +99,27 @@ const deleteUserByIds = async (id) => {
 };
 
 //Address table
-const createAddress = async (
+const createAddress = async ({
   postal_code,
   street_name,
   phone,
-  number,
-  comune,
+  address_number,
+  commune,
   city,
   region
-) => {
+}) => {
   const SQLquery = {
-    text: "INSERT INTO address (postal_code, street_name, phone, number, comune, city, region ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ; ",
-    values: [postal_code, street_name, phone, number, comune, city, region],
+    text: `INSERT INTO address (postal_code, street_name, phone, address_number, commune, city, region ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING * ; `,
+    values: [
+      postal_code,
+      street_name,
+      phone,
+      address_number,
+      commune,
+      city,
+      region
+    ]
   };
-
   const response = await pool.query(SQLquery);
   return response.rows[0];
 };
@@ -111,14 +128,22 @@ const editAddress = async (
   postal_code,
   street_name,
   phone,
-  number,
-  comune,
+  address_number,
+  commune,
   city,
   region
 ) => {
   const SQLquery = {
-    text: "UPDATE SET street_name = COALESCE($2, street_name), phone = COALESCE($3, phone), number = COALESCE($4, number), comune = COALESCE($5, comune), city = COALESCE($6, city), region = COALESCE($7, region), WHERE postal_code = $1 RETURNING *;",
-    values: [postal_code, street_name, phone, number, comune, city, region],
+    text: "UPDATE address SET street_name = COALESCE($2, street_name), phone = COALESCE($3, phone), address_number = COALESCE($4, address_number), commune = COALESCE($5, commune), city = COALESCE($6, city), region = COALESCE($7, region) WHERE postal_code = $1 RETURNING *;",
+    values: [
+      postal_code,
+      street_name,
+      phone,
+      address_number,
+      commune,
+      city,
+      region
+    ]
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -126,12 +151,12 @@ const editAddress = async (
 
 const deleteAddress = async (postal_code) => {
   const SQLquery = {
-    text: 'DELETE FROM "address" WHERE postal_code = $1 RETURNING *',
-    values: [postal_code],
+    text: "DELETE FROM address WHERE postal_code = $1 RETURNING *",
+    values: [postal_code]
   };
   const response = await pool.query(SQLquery);
   if (response.rowCount == 0) {
-    throw new Error("This item has already been deleted or not exist...");
+    throw new Error("This item has been deleted...");
   }
   return response.rows;
 };
@@ -140,8 +165,18 @@ const deleteAddress = async (postal_code) => {
 
 const getFavoritesByUsers = async (client_rut) => {
   const query = {
-    text: 'SELECT * FROM "favorites" WHERE client_rut = $1;',
-    values: [client_rut],
+    text: `SELECT fav.rut, fav.product_code, fav.description, fav.product_name, fav.price, fav.stock, fav.product_image 
+            FROM (
+                  SELECT *, "user".name AS name_user, products.name AS product_name, products.id AS product_code
+                  FROM favorites
+                  RIGHT JOIN "user" ON favorites.client_rut = "user".rut 
+                  RIGHT JOIN products ON favorites.product_id = products.id
+                  WHERE favorites.client_rut = $1
+                  ORDER BY favorites.client_rut
+            ) AS fav 
+            ORDER BY fav.product_id ;`,
+
+    values: [client_rut]
   };
   const response = await pool.query(query);
   return response.rows[0];
@@ -150,7 +185,7 @@ const getFavoritesByUsers = async (client_rut) => {
 const addToFavorites = async (client_rut, product_id) => {
   const query = {
     text: 'INSERT INTO "favorites" (client_rut, product_id) VALUES ($1, $2) RETURNING *',
-    values: [client_rut, product_id],
+    values: [client_rut, product_id]
   };
   const response = await pool.query(query);
   return response.rows[0];
@@ -158,23 +193,13 @@ const addToFavorites = async (client_rut, product_id) => {
 const deleteFavorites = async (favorites_id) => {
   const SQLquery = {
     text: 'DELETE FROM "favorites" WHERE favorites_id = $1 RETURNING *',
-    values: [favorites_id],
+    values: [favorites_id]
   };
   const response = await pool.query(SQLquery);
   if (response.rowCount == 0) {
     throw new Error("This item has already been deleted or not exist...");
   }
   return response.rows;
-};
-
-const byEmail = async ({ email }) => {
-  console.log(email);
-  const SQLquery = {
-    text: 'SELECT * FROM "user" WHERE email = $1',
-    values: [email],
-  };
-  const response = await pool.query(SQLquery);
-  return response.rows[0];
 };
 
 export {
@@ -189,5 +214,5 @@ export {
   deleteAddress,
   deleteFavorites,
   editAddress,
-  byEmail,
+  byEmail
 };

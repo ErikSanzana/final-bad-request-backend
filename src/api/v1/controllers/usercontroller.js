@@ -6,7 +6,10 @@ import {
   addToFavorites,
   deleteUserByIds,
   getUserAll,
-  createAddress
+  createAddress,
+  editAddress,
+  deleteAddress,
+  deleteFavorites
 } from "../models/userModel.js";
 
 //Table: user
@@ -35,11 +38,10 @@ const createNewUser = async (req, res) => {
     );
     res.status(201).json({ user: result });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(400).json(error.message);
   }
 };
-
 
 const updateUser = async (req, res) => {
   try {
@@ -102,8 +104,8 @@ const deleteUserById = async (req, res) => {
     }
     const deletedUser = await deleteUserByIds(id);
     res
-      .status(200)
-      .json({ message: "Usuario eliminado correctamente", user: deletedUser });
+      .json({ message: "user deleted", user: deletedUser });
+      console.log("Something has been deleted");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -112,18 +114,46 @@ const deleteUserById = async (req, res) => {
 //Address table
 const setAddress = async (req, res) => {
   try {
-    const params = req.params;
-    const result = await createAddress(params);
-    res.status(200)
-      .json({ message: "addres added", address: params });
+    const body = req.body;
+    const result = await createAddress(body);
+    res.status(200).json({ message: "address added", address: result });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
+const updateAddress = async (req, res) => {
+  try {
+    const { postal_code } = req.params;
+    const { street_name, phone, address_number, commune, city, region } = req.body;
+    const result = await editAddress(
+      postal_code,
+      street_name,
+      phone,
+      address_number,
+      commune,
+      city,
+      region
+    );
 
+    res.status(200).json({ message: "address edited", address: result });
+  } catch (error) {
 
+    res.status(500).json({ message: error.message });
+  }
+};
+const removeAddress = async (req, res) => {
+  try {
+    const { postal_code } = req.params;
+    const result = await deleteAddress(postal_code);
+    res.json({ message: "address deleted", address: result });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+  
+};
 
+//favorites table 
 const getFavoritesByUser = async (req, res) => {
   try {
     const client_rut = req.params.id;
@@ -144,6 +174,16 @@ const addToFavorite = async (req, res) => {
   }
 };
 
+const removeFavorites = async (req, res) => {
+  try {
+    const { favorites_id } = req.params;
+    const result = await deleteFavorites(favorites_id);
+    res.json({ message: "address deleted", address: result });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 
 
 export {
@@ -153,5 +193,9 @@ export {
   getFavoritesByUser,
   addToFavorite,
   deleteUserById,
-  getAllUser
+  getAllUser,
+  setAddress,
+  updateAddress,
+  removeAddress,
+  removeFavorites,
 };

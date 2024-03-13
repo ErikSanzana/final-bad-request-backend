@@ -14,17 +14,19 @@ import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
 
-///api/v1/store....
 
-//para usuarios
+//products 
 router.get("/products", getAllProducts);
 router.get("/product/:id", getProductsById);
-//para admin
+router.get("/admin/product/:id", getProductsById); //podria ser 1 ruta
 router.post("/admin/products", createProducts);
-router.get("/admin/product/:id", getProductsById);
 router.delete("/admin/product/:id", deleteProduct);
 router.put("/admin/product/:id", updateProducts);
-router.patch("/admin/product/:id", patchProduct);
+router.patch("/admin/product/:id", patchProduct); // no son necesarias las 2
+
+
+
+//para admin
 
 // rutas para proceso de compra
 

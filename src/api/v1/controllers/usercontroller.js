@@ -105,7 +105,6 @@ const deleteUserById = async (req, res) => {
     const deletedUser = await deleteUserByIds(id);
     res
       .json({ message: "user deleted", user: deletedUser });
-      console.log("Something has been deleted");
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

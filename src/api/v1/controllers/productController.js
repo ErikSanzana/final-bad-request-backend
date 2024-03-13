@@ -9,6 +9,8 @@ import {
 } from "../models/productModel.js";
 import { findError } from "../utils/utils.js";
 
+
+//products
 const createProducts = async (req, res) => {
   try {
     const { name, description, price, stock, product_image } = req.body;
@@ -104,7 +106,8 @@ const deleteProduct = async (req, res) => {
     if (deleteProduct === 0) {
       return res.status(404).json({ message: "No existe el registro" });
     }
-    res.status(204).json({ message: "registro eliminado con exito" });
+    res.json({ message: "product deleted", product: deleteProduct });
+
   } catch (error) {
     console.log(error);
     const errorFound = findError(error.code);
@@ -113,6 +116,8 @@ const deleteProduct = async (req, res) => {
       .json({ error: errorFound[0].message });
   }
 };
+
+
 
 //carro de compra
 
@@ -143,6 +148,10 @@ const addCart = async (req, res) => {
     //   .json({ error: errorFound[0].message });
   }
 };
+
+
+
+
 
 // crear la orden de compra
 const buyOrder = async (req, res) => {

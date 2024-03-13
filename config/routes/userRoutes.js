@@ -28,4 +28,6 @@ router.post("/user/favorites", addToFavorite);
 //address
 router.post("/user/address",)
 
+// algo para gerardo 
+
 export default router;

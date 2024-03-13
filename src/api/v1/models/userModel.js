@@ -1,7 +1,9 @@
 import pool from "../../../../config/db/conectionDb.js";
+import bcrypt from "bcryptjs";
 
 //Table: user
 const createUser = async (
+
   rut,
   name,
   last_name,
@@ -11,6 +13,7 @@ const createUser = async (
   birth_date,
   rol
 ) => {
+  const hashedPassword = bcrypt.hashSync(password);
   const SQLquery = {
     text: 'INSERT INTO "user" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING * ; ',
     values: [
@@ -19,10 +22,10 @@ const createUser = async (
       last_name,
       postal_code,
       email,
-      password,
+      hashedPassword,
       birth_date,
-      rol
-    ]
+      rol,
+    ],
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -50,8 +53,8 @@ const updateUsers = async (
       password,
       birth_date,
       rol,
-      id
-    ]
+      id,
+    ],
   };
   const response = await pool.query(SQLquery);
   return response.rows[0];
@@ -68,7 +71,7 @@ const getUserAll = async () => {
 const getUser = async (id) => {
   const query = {
     text: 'SELECT * FROM "user" WHERE id = $1',
-    values: [id]
+    values: [id],
   };
   const response = await pool.query(query);
   return response.rows[0];
@@ -126,7 +129,7 @@ const deleteAddress = async (postal_code) => {
 const getFavoritesByUsers = async (client_rut) => {
   const query = {
     text: 'SELECT * FROM "favorites" WHERE client_rut = $1;',
-    values: [client_rut]
+    values: [client_rut],
   };
   const response = await pool.query(query);
   return response.rows[0];
@@ -135,7 +138,7 @@ const getFavoritesByUsers = async (client_rut) => {
 const addToFavorites = async (client_rut, product_id) => {
   const query = {
     text: 'INSERT INTO "favorites" (client_rut, product_id) VALUES ($1, $2) RETURNING *',
-    values: [client_rut, product_id]
+    values: [client_rut, product_id],
   };
   const response = await pool.query(query);
   return response.rows[0];
@@ -152,6 +155,15 @@ const deleteFavorites = async (favorites_id) => {
   return response.rows;
 };
 
+ const byEmail = async ({ email }) => {
+  console.log(email);
+  const SQLquery = {
+    text: 'SELECT * FROM "user" WHERE email = $1',
+    values: [email],
+  };
+  const response = await pool.query(SQLquery);
+  return response.rows[0];
+};
 
 export {
   createUser,
@@ -163,4 +175,6 @@ export {
   getUserAll,
   createAddress,
    deleteAddress,deleteFavorites,editAddress,
+   byEmail
 };
+

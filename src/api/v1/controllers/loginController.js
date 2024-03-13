@@ -1,9 +1,11 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { byEmail } from ".././models/userModel.js";
 import { findError } from "../utils/utils.js";
 
 const loginUser = async (req, res) => {
   const { user } = req.body;
+  console.log(req.body);
   try {
     const findUser = await byEmail(user);
     if (!findUser) {
@@ -22,14 +24,15 @@ const loginUser = async (req, res) => {
           .status(errorFound[0].status)
           .json({ error: errorFound[0].message });
       } else {
-        const { email, nombre, apellido } = findUser;
+        const { email, name, last_name } = findUser;
+        console.log(process.env.JWT_SECRET);
         const token = jwt.sign({ email }, process.env.JWT_SECRET, {
-          expiresIn: "1h"
+          expiresIn: "1h",
         });
         res.status(200).json({
-          message: `Bienvenido, ${nombre} ${apellido} has iniciado sesion`,
+          message: `Bienvenido, ${name} ${last_name} has iniciado sesion`,
           code: 200,
-          token
+          token,
         });
       }
     }

@@ -23,10 +23,10 @@ describe("Crud Users", () => {
   };
 
   const fakeUser = {
-    rut: faker.number.int({ min: 10, max: 100 }),
+    rut: 99999 || faker.number.int({ min: 1999, max: 10000000 }),
     name: faker.person.firstName(),
     last_name: faker.person.lastName(),
-    postal_code: faker.number.int({ min: 10, max: 100 }),
+    postal_code: faker.number.int({ min: 11, max: 10000 }),
     email: faker.internet.email(),
     password: faker.number.int({ min: 166666, max: 100000000 }),
     birth_date: faker.date.birthdate(),
@@ -36,7 +36,7 @@ describe("Crud Users", () => {
   const fakeUserUpdate = {
     name: faker.animal.cow(),
     last_name: faker.animal.horse(),
-    postal_code: faker.number.int({ min: 10, max: 100 }),
+    postal_code: faker.number.int({ min: 101, max: 100101 }),
     email: faker.internet.email(),
     password: faker.number.int({ min: 166666, max: 100000000 }),
     birth_date: faker.date.birthdate(),

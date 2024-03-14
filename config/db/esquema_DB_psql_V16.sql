@@ -7,14 +7,13 @@ DROP EXTENSION IF EXISTS "uuid-ossp";
 CREATE EXTENSION "uuid-ossp" SCHEMA public;
 
 CREATE TABLE "user" (
-  "id" SERIAL UNIQUE NOT NULL,
-  "rut" INT UNIQUE PRIMARY KEY,
+  "rut" INT UNIQUE NOT NULL PRIMARY KEY,
   "name" VARCHAR NOT NULL,
   "last_name" VARCHAR NOT NULL ,
   "postal_code" INT UNIQUE NOT NULL,
   "email" VARCHAR UNIQUE NOT NULL,
   "password" VARCHAR NOT NULL CHECK (length(password) >= 6),
-  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ), -- cambiar fecha americana a latina
+  "birth_date" TIMESTAMP NOT NULL CHECK (birth_date < created_at ),
   "rol" VARCHAR NOT NULL,
   "is_banned" BOOLEAN NOT NULL DEFAULT (false),
   "created_at" TIMESTAMP NOT NULL DEFAULT NOW(),

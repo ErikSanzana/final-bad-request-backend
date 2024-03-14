@@ -3,8 +3,7 @@ CREACREATE DATABASE jabon;
 \c jabon;
 
 CREATE TABLE "user" (
-  "id" SERIAL UNIQUE NOT NULL,
-  "rut" INT UNIQUE PRIMARY KEY,
+  "rut" INT UNIQUE PRIMARY KEY NOT NULL,
   "name" VARCHAR NOT NULL,
   "last_name" VARCHAR NOT NULL CHECK (length(password) >= 6),
   "postal_code" INT UNIQUE NOT NULL,

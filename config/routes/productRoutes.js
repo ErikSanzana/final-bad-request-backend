@@ -14,6 +14,9 @@ import {
 import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
+
+//Rutas para axion   /api/v1/store + la ruta de abajo
+
 //products 
 router.get("/products", getAllProducts);
 router.get("/product/:id", getProductsById);

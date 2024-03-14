@@ -16,6 +16,7 @@ import {
 // import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();
 
+ //Rutas para axions    /api/v1/store + la ruta de abajo
 
 //router.post("/user", validateParametersUser, createNewUser);
 router.post("/user", createNewUser); 
@@ -28,7 +29,6 @@ router.delete("/admin/user/:id", deleteUserById);
 router.get("/user/favorite/like/:id", getFavoritesByUser);
 router.post("/user/favorites", addToFavorite); 
 router.delete("/user/favorites/:favorites_id", removeFavorites) //chequear tabla de favoritos 
-
 
 //address
 router.post("/user/address",setAddress)

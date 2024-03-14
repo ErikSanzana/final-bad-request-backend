@@ -77,10 +77,9 @@ const patchUpdateProduct = async (
       values: [id, name, description, price, stock, product_image]
     };
     const response = await pool.query(SQLquery);
-    // console.log(response.rows)
     return response.rows[0];
   } catch (error) {
-    console.log(error);
+    console.log(error); // arreglar 
   }
 };
 

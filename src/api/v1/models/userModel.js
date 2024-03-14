@@ -77,7 +77,6 @@ const getUser = async (id) => {
 };
 
 const byEmail = async ({ email }) => {
-  console.log(email);
   const SQLquery = {
     text: 'SELECT * FROM "user" WHERE email = $1',
     values: [email]

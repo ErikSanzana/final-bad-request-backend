@@ -5,7 +5,6 @@ import { findError } from "../utils/utils.js";
 
 const loginUser = async (req, res) => {
   const { user } = req.body;
-  console.log(req.body);
   try {
     const findUser = await byEmail(user);
     if (!findUser) {
@@ -25,7 +24,7 @@ const loginUser = async (req, res) => {
           .json({ error: errorFound[0].message });
       } else {
         const { email, name, last_name } = findUser;
-        console.log(process.env.JWT_SECRET);
+
         const token = jwt.sign({ email }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
@@ -37,7 +36,6 @@ const loginUser = async (req, res) => {
       }
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 };

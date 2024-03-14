@@ -14,6 +14,10 @@ app.use(express.json());
 app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
 app.use("/api/v1", userRoutes);
+app.get("/",(req,res)=>{
+  res.send("api culia conectadas");
+});
+
 app.use((err, req, res, next) => {
   return res.status(500).json({
     status: "error",

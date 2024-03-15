@@ -5,7 +5,7 @@ const getProduct = async () => {
   try {
     const SQLquery = { text: "SELECT * FROM products" };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -18,7 +18,7 @@ const ProductsById = async (id) => {
       values: [id]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -32,7 +32,7 @@ const createProduct = async (productData) => {
       values: [name, description, price, stock, product_image]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -55,7 +55,7 @@ const updateProduct = async (
     if (response.rowCount == 0) {
       throw new Error("Not Found, check ID");
     }
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("Error updating product: " + error.message);
   }
@@ -88,7 +88,7 @@ const patchUpdateProduct = async (
       values: [id, name, description, price, stock, product_image]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -114,7 +114,7 @@ const createStoreCart = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -127,7 +127,7 @@ const destroyCart = async (id) => {
       values: [id]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -157,7 +157,7 @@ const createBuyOrder = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -199,7 +199,7 @@ const createOrderHistory = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }

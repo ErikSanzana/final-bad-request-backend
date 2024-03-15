@@ -28,7 +28,7 @@ const createUser = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -61,7 +61,7 @@ const updateUsers = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -73,7 +73,7 @@ const getUserAll = async () => {
       text: 'SELECT * FROM "user" ;'
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -86,7 +86,7 @@ const getUser = async (id) => {
       values: [id]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -99,7 +99,7 @@ const byEmail = async ({ email }) => {
       values: [email]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -115,7 +115,7 @@ const deleteUserByIds = async (id) => {
     if (response.rowCount == 0) {
       throw new Error("This item has already been deleted or not exist...");
     }
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -145,7 +145,7 @@ const createAddress = async ({
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -174,7 +174,7 @@ const editAddress = async (
       ]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -190,7 +190,7 @@ const deleteAddress = async (postal_code) => {
     if (response.rowCount == 0) {
       throw new Error("This item has been deleted...");
     }
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -215,7 +215,7 @@ const getFavoritesByUsers = async (client_rut) => {
       values: [client_rut]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -228,7 +228,7 @@ const addToFavorites = async (client_rut, product_id) => {
       values: [client_rut, product_id]
     };
     const response = await pool.query(SQLquery);
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -243,7 +243,7 @@ const deleteFavorites = async (favorites_id) => {
     if (response.rowCount == 0) {
       throw new Error("This item has already been deleted or not exist...");
     }
-    return response.rows;
+    return response.rows[0];
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }

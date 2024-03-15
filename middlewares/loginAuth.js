@@ -2,16 +2,16 @@ import { findError } from "../src/api/v1/utils/utils.js";
 import jwt from "jsonwebtoken";
 
 export const loginProtect = async (req, res, next) => {
+
   try {
     if (!req.header("Authorization")) {
       return res
         .status(401)
         .json({ error: "Token inválido o no proporcionado" });
     } else {
-      const token = req.header("Authorization");
+      const token = req.header("Authorization").split(" ")[1];
       const tokenData = await validateToken(token);
       req.user = tokenData;
-      console.log("console.log de loginauth", req.user);
       next();
     }
   } catch (error) {

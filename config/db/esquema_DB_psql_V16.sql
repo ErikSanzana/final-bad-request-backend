@@ -115,3 +115,4 @@ BEFORE UPDATE ON "favorites"
 FOR EACH ROW
 EXECUTE PROCEDURE update_updated_at();
 
+INSERT INTO "user" (rut, name, last_name, postal_code, email, password, birth_date, rol ) VALUES ( 1000001, "ADMIN", "ADMIN", correo@correo.cl, 123456789, 31/12/1900, "ADMIN"); 

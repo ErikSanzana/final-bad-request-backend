@@ -7,6 +7,7 @@ const loginUser = async (req, res) => {
   const { user } = req.body;
   try {
     const findUser = await byEmail(user);
+
     if (!findUser) {
       const errorFound = findError("auth_01");
       return res
@@ -21,7 +22,7 @@ const loginUser = async (req, res) => {
         const errorFound = findError("auth_02");
         return res
           .status(errorFound[0].status)
-          .json({ error: errorFound[0].message });
+          .json({ error: errorFound[0].message});
       } else {
         const { email, name, last_name } = findUser;
 

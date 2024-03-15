@@ -12,7 +12,7 @@ import {
   updateAddress,
   removeAddress,
   removeFavorites
-} from "../../src/api/v1/controllers/usercontroller.js";
+} from "../../src/api/v1/controllers/userController.js"
 import { loginProtect } from "../../middlewares/loginAuth.js";
 // import { notFound } from "../../src/api/v1/controllers/notFoundController.js";
 const router = express.Router();

@@ -1,23 +1,24 @@
 import express from "express";
 import cors from "cors";
-import { logger } from "logger-express"; //coemntar cuando se testee
+import { logger } from "logger-express"; //comentar cuando se testee
 import productRoutes from "./config/routes/productRoutes.js";
 import loginRoutes from "./config/routes/loginRoutes.js";
 import userRoutes from "./config/routes/userRoutes.js";
+import googleRoutes from "./config/routes/googleRoutes.js";
 // import{V1SwaggerDocs } from './v1/swagger'
 
 const app = express();
 // swagger
-app.options("*", cors());
-app.use(logger());
+app.use("*", cors());
+// app.use(cors());
+// app.options("*", cors());
 app.use(express.json());
 app.use("/api/v1/store", productRoutes);
 app.use("/api/v1/login", loginRoutes);
+app.use("/api/v1/google", googleRoutes);
 app.use("/api/v1", userRoutes);
-app.get("/",(req,res)=>{
-  res.send("api culia conectadas");
-});
 
+app.use(logger());
 app.use((err, req, res, next) => {
   return res.status(500).json({
     status: "error",
@@ -26,7 +27,7 @@ app.use((err, req, res, next) => {
 });
 
 // const PORT = 3001 // for tesing
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.listen(PORT, (error) => {
   if (error) {

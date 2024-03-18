@@ -3,9 +3,9 @@ import pool from "../../../../config/db/conectionDb.js";
 //table: products
 const getProduct = async () => {
   try {
-    const SQLquery = { text: "SELECT * FROM products" };
+    const SQLquery = { text: "SELECT * FROM products ;" };
     const response = await pool.query(SQLquery);
-    return response.rows[0];
+    return response.rows;
   } catch (error) {
     throw new Error("error: " + error.code + " :" + error.message);
   }
@@ -205,6 +205,23 @@ const createOrderHistory = async (
   }
 };
 
+const getOrderHistory = async (
+  id,
+
+) => {
+  try {
+    const SQLquery = {
+      text: "SELECT * FROM store_cart WHERE client_rut = $1",
+      values: [
+        id,
+      ]
+    };
+    const response = await pool.query(SQLquery);
+    return response.rows[0];
+  } catch (error) {
+    throw new Error("error: " + error.code + " :" + error.message);
+  }
+};
 export {
   getProduct,
   updateProduct,
